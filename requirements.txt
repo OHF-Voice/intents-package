@@ -1,7 +1,8 @@
-build
-black
-PyYAML>=6.0,<7
-mypy
-isort
-flake8
-pylint
+build==1.3.0
+black==25.1.0
+flake8==7.3.0
+isort==6.0.1
+mypy==1.17.1
+pylint==3.3.8
+pytest==8.4.1
+types-PyYAML==6.0.12.20250822

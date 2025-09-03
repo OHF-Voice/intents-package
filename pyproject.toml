@@ -27,6 +27,16 @@ requires-python = ">=3.9.0"
 [project.urls]
 "Source Code" = "https://github.com/OHF-Voice/intents"
 
+[tool.mypy]
+pretty = true
+disable_error_code = "var-annotated"
+
+[[tool.mypy.overrides]]
+module = [
+    "hassil.*",
+]
+ignore_missing_imports = true
+
 [tool.setuptools]
 platforms = ["any"]
 zip-safe  = false
