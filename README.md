@@ -31,3 +31,22 @@ script/package
 ```
 
 Upload `.tar.gz` and `.whl` in `dist/` to PyPI.
+
+## Packaging to test changes
+
+For E2E testing a Pull Request it may be useful to run locally a change from a fork.
+
+Pre-requisite: you already cloned the repository following the instructions above.
+
+1. Generate a package.
+
+    ```sh
+    cd intents
+    git remote add username https://github.com/username/intents.git
+    git fetch username
+    git checkout branchname # in case you are not using main
+    cd ..
+    script/package
+    ```
+
+    You should see a new folder `/dist` with two files one `.whl` and one `.tar.gz`.
