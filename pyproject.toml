@@ -63,5 +63,6 @@ include = ["home_assistant_intents"]
 "home_assistant_intents" = [
     "data/*.json",
     "fuzzy/*.json",
-    "language_scores.json"
+    "language_scores.json",
+    "py.typed"
 ]
