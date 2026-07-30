@@ -8,7 +8,12 @@ import pytest
 import yaml
 from hassil import Intents, TextSlotList, recognize_best
 
-from home_assistant_intents import get_intents, get_languages
+from home_assistant_intents import (
+    get_intents,
+    get_languages,
+    get_speech_to_phrase_intents,
+    get_speech_to_phrase_languages,
+)
 
 # The intents repo (submodule) lives next to the package. Its test fixtures are
 # the source of the example sentences (and their entities/areas/floors) used to
@@ -175,6 +180,91 @@ def test_slot_combination_examples(language: str, intent: str, combo: str) -> No
                         assert (
                             actual_value == expected_value
                         ), f"Slot {slot_name} = {actual_value!r}, expected {expected_value!r}: {error}"
+
+
+def _combo_pairs(intents_dict: Dict[str, Any]) -> Set[Tuple[str, str]]:
+    """(intent, slot_combination) pairs present in an exported intents dict."""
+    pairs: Set[Tuple[str, str]] = set()
+    for intent_name, intent_info in intents_dict.get("intents", {}).items():
+        for data in intent_info.get("data", []):
+            combo = data.get("metadata", {}).get("slot_combination")
+            if combo:
+                pairs.add((intent_name, combo))
+    return pairs
+
+
+def test_speech_to_phrase_languages_load() -> None:
+    """Every exported Speech-to-Phrase language parses and ships responses."""
+    languages = get_speech_to_phrase_languages()
+    assert "en" in languages, "English Speech-to-Phrase intents are expected"
+
+    for language in languages:
+        s2p_dict = get_speech_to_phrase_intents(language)
+        assert s2p_dict, f"No Speech-to-Phrase intents for {language}"
+
+        # Loads with hassil like the Home Assistant export.
+        Intents.from_dict(s2p_dict)
+
+        # Responses are carried over just like the Home Assistant JSON.
+        assert s2p_dict.get("responses", {}).get(
+            "intents"
+        ), f"Missing intent responses for {language}"
+
+
+def test_speech_to_phrase_missing_language_is_none() -> None:
+    assert get_speech_to_phrase_intents("this-is-not-a-language") is None
+
+
+def test_speech_to_phrase_combos_subset_of_home_assistant() -> None:
+    """Every Speech-to-Phrase combo also exists in the Home Assistant export.
+
+    The lean subset of *phrasings* is verified upstream in the intents repo; here
+    we guard the packaging contract: Speech-to-Phrase never introduces a combo
+    Home Assistant doesn't also expose.
+    """
+    for language in get_speech_to_phrase_languages():
+        s2p_dict = get_speech_to_phrase_intents(language)
+        ha_dict = get_intents(language)
+        assert ha_dict is not None, f"No Home Assistant export for {language}"
+
+        s2p_pairs = _combo_pairs(s2p_dict)
+        ha_pairs = _combo_pairs(ha_dict)
+        extra = s2p_pairs - ha_pairs
+        assert not extra, f"{language}: combos not in Home Assistant export: {extra}"
+
+
+def test_speech_to_phrase_recognizes_samples() -> None:
+    """A few representative commands recognize against the English grammar."""
+    s2p_dict = get_speech_to_phrase_intents("en")
+    assert s2p_dict is not None
+    intents = Intents.from_dict(s2p_dict)
+
+    slot_lists = {
+        "name": TextSlotList.from_tuples(
+            [("kitchen light", "kitchen light", {"domain": "light"}, {})],
+            name="name",
+        ),
+        "area": TextSlotList.from_strings(["kitchen"], name="area"),
+        "floor": TextSlotList.from_strings(["first floor"], name="floor"),
+    }
+
+    samples = {
+        "nevermind": "HassNevermind",
+        "mute": "HassMediaPlayerMute",
+        "turn on the lights": "HassTurnOn",
+        "set a timer for 5 minutes": "HassStartTimer",
+        "turn on the kitchen light": "HassTurnOn",
+    }
+    for sentence, expected_intent in samples.items():
+        result = recognize_best(
+            sentence,
+            intents,
+            slot_lists=slot_lists,
+            intent_context={"area": CONTEXT_AREA},
+            best_slot_name="name",
+        )
+        assert result is not None, f"Not recognized: {sentence!r}"
+        assert result.intent.name == expected_intent, f"Wrong intent: {sentence!r}"
 
 
 # TODO: Need to add support for kw and sr-Latn

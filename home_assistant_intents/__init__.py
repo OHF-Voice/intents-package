@@ -14,6 +14,7 @@ from .languages import LANGUAGES
 _PACKAGE = "home_assistant_intents"
 _DIR = Path(typing.cast(os.PathLike, importlib.resources.files(_PACKAGE)))
 _DATA_DIR = _DIR / "data"
+_SPEECH_TO_PHRASE_DIR = _DIR / "speech_to_phrase"
 
 
 class ErrorKey(str, Enum):
@@ -137,6 +138,32 @@ def get_languages() -> List[str]:
     return LANGUAGES
 
 
+def get_speech_to_phrase_intents(
+    language: str,
+    json_load: Callable[[IO[str]], Dict[str, Any]] = json.load,
+) -> Optional[Dict[str, Any]]:
+    """Load the Speech-to-Phrase (constrained) intents for a language.
+
+    Returns the lean, tagged subset used to build the Speech-to-Phrase STT
+    grammar, in the same hassil-ready format as :func:`get_intents` (including
+    lists, expansion rules, and responses), or ``None`` if the language has no
+    Speech-to-Phrase templates.
+    """
+    intents_path = _SPEECH_TO_PHRASE_DIR / f"{language}.json"
+    if not intents_path.exists():
+        return None
+
+    with intents_path.open(encoding="utf-8") as intents_file:
+        return json_load(intents_file)
+
+
+def get_speech_to_phrase_languages() -> List[str]:
+    """Return the languages that ship Speech-to-Phrase templates."""
+    if not _SPEECH_TO_PHRASE_DIR.is_dir():
+        return []
+    return sorted(p.stem for p in _SPEECH_TO_PHRASE_DIR.glob("*.json"))
+
+
 def get_language_scores(
     json_load: Callable[[IO[str]], Dict[str, Any]] = json.load,
 ) -> Dict[str, LanguageScores]:
@@ -155,3 +182,15 @@ def get_language_scores(
             )
             for lang_key, lang_scores in scores_dict.items()
         }
+
+
+def get_intent_info(
+    json_load: Callable[[IO[str]], Dict[str, Any]] = json.load,
+) -> Optional[Dict[str, Any]]:
+    """Load info for all intents."""
+    info_path = _DATA_DIR / "intents.json"
+    if not info_path.exists():
+        return None
+
+    with info_path.open(encoding="utf-8") as info_file:
+        return json_load(info_file)

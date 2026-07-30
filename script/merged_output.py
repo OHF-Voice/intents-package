@@ -65,33 +65,59 @@ def convert_slot_combination_group(
     return entry
 
 
-def convert_slot_combinations(lang_dir: Path, intent_info: dict) -> dict:
+def partition_speech_to_phrase(groups: list) -> tuple:
+    """Split a combo's data groups into (home_assistant, speech_to_phrase).
+
+    Mirrors ``partition_speech_to_phrase`` in the intents repo. A
+    ``speech_to_phrase``-tagged group is a lean subset of its richer untagged
+    sibling, so Home Assistant drops it when such a sibling exists; when every
+    group is tagged (a combo already lean enough for both), they serve both.
+
+    Speech-to-Phrase always consumes the tagged groups.
+    """
+    untagged = [g for g in groups if not g.get("speech_to_phrase")]
+    tagged = [g for g in groups if g.get("speech_to_phrase")]
+    ha_groups = untagged if untagged else tagged
+    return ha_groups, tagged
+
+
+def convert_slot_combinations(lang_dir: Path, intent_info: dict) -> tuple:
     """Convert new-format slot-combination dirs into old-format intent data.
 
-    Returns a mapping of intent name -> {"data": [...]} for every intent that
-    has a ``sentences/<language>/<intent>/`` directory.
+    Returns ``(ha_converted, s2p_converted)``, each a mapping of intent name ->
+    {"data": [...]}. ``ha_converted`` holds the blocks Home Assistant's grammar
+    uses; ``s2p_converted`` holds the ``speech_to_phrase``-tagged blocks for the
+    constrained Speech-to-Phrase grammar (see ``partition_speech_to_phrase``).
     """
-    converted: dict = {}
+    ha_converted: dict = {}
+    s2p_converted: dict = {}
     for intent_dir in sorted(p for p in lang_dir.iterdir() if p.is_dir()):
         intent_name = intent_dir.name
         combos = intent_info.get(intent_name, {}).get("slot_combinations", {})
 
-        data = []
+        ha_data: list = []
+        s2p_data: list = []
         for combo_file in sorted(intent_dir.glob("*.yaml")):
             combo_name = combo_file.stem
             combo_info = combos.get(combo_name, {})
             combo_dict = yaml.safe_load(combo_file.read_text())
-            for group in combo_dict.get("data", []):
-                if not group.get("sentences"):
-                    continue
-                data.append(
+            groups = [g for g in combo_dict.get("data", []) if g.get("sentences")]
+            ha_groups, s2p_groups = partition_speech_to_phrase(groups)
+            for group in ha_groups:
+                ha_data.append(
+                    convert_slot_combination_group(group, combo_name, combo_info)
+                )
+            for group in s2p_groups:
+                s2p_data.append(
                     convert_slot_combination_group(group, combo_name, combo_info)
                 )
 
-        if data:
-            converted[intent_name] = {"data": data}
+        if ha_data:
+            ha_converted[intent_name] = {"data": ha_data}
+        if s2p_data:
+            s2p_converted[intent_name] = {"data": s2p_data}
 
-    return converted
+    return ha_converted, s2p_converted
 
 
 def merge_dict(base_dict, new_dict):
@@ -118,13 +144,32 @@ def merge_dict(base_dict, new_dict):
             base_dict[key] = value
 
 
+def filter_lang_intents(intents_dict: dict, supported_intents: set) -> dict:
+    """Keep supported intents with at least one non-empty sentence group."""
+    result: dict = {}
+    for intent, info in intents_dict.items():
+        if intent not in supported_intents:
+            continue
+        data = [d for d in info["data"] if len(d["sentences"]) > 0]
+        if not data:
+            continue
+        result[intent] = {**info, "data": data}
+    return result
+
+
 def main() -> None:
     logging.basicConfig(level=logging.INFO)
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("target")
+    parser.add_argument("target", help="Output directory for Home Assistant JSON")
     parser.add_argument(
         "--intents-dir", default=INTENTS_DIR, help="Intents repo directory"
+    )
+    parser.add_argument(
+        "--speech-to-phrase-target",
+        default=None,
+        help="Output directory for Speech-to-Phrase JSON "
+        "(default: <target>/../speech_to_phrase)",
     )
     args = parser.parse_args()
 
@@ -133,13 +178,26 @@ def main() -> None:
     response_dir = intents_dir / "responses"
     lists_dir = intents_dir / "lists"
     rules_dir = intents_dir / "rules"
-    intents_file = intents_dir / "intents.yaml"
+    intents_path = intents_dir / "intents.yaml"
     languages = sorted(p.name for p in sentence_dir.iterdir() if p.is_dir())
 
     target = Path(args.target)
     target.mkdir(parents=True, exist_ok=True)
 
-    intent_info = yaml.safe_load(intents_file.read_text())
+    s2p_target = (
+        Path(args.speech_to_phrase_target)
+        if args.speech_to_phrase_target
+        else target.parent / "speech_to_phrase"
+    )
+    s2p_target.mkdir(parents=True, exist_ok=True)
+
+    with open(intents_path, "r", encoding="utf-8") as intents_file:
+        intent_info = yaml.safe_load(intents_file)
+
+    # Write all intents info
+    intents_json_path = target / "intents.json"
+    with open(intents_json_path, "w", encoding="utf-8") as intents_json_file:
+        json.dump(intent_info, intents_json_file)
 
     # Skip intents that are not supported in Home Assistant
     supported_intents = set(
@@ -162,19 +220,22 @@ def main() -> None:
         # new-format directory. While both exist (a partially-migrated language)
         # the old-format files remain authoritative, so the new directory only
         # takes effect for an intent once its old-format data is gone.
-        converted_intents = convert_slot_combinations(
+        ha_converted, s2p_converted = convert_slot_combinations(
             sentence_dir / language, intent_info
         )
         lang_intent_data = merged_sentences.setdefault("intents", {})
         activated_new_format = False
-        for intent_name, intent_dict in converted_intents.items():
+        for intent_name, intent_dict in ha_converted.items():
             if intent_name in lang_intent_data:
                 # Not yet migrated: old-format file(s) still present
                 continue
             lang_intent_data[intent_name] = intent_dict
             activated_new_format = True
 
-        if activated_new_format:
+        # The Speech-to-Phrase grammar always comes from the (new-format) tagged
+        # blocks, so it needs the dedicated lists/ and rules/ even if no HA
+        # intent newly activated the new format this pass.
+        if activated_new_format or s2p_converted:
             # Migrated intents keep their lists and expansion rules in the
             # dedicated lists/ and rules/ directories instead of _common.yaml.
             # These are authoritative for the new sentences, so they take
@@ -268,6 +329,35 @@ def main() -> None:
             json.dump(output, target_file, ensure_ascii=False, indent=2)
 
         num_processed_languages += 1
+
+        # Speech-to-Phrase artifact: the lean, tagged subset only. Same schema as
+        # the Home Assistant JSON (including responses) so the Speech-to-Phrase
+        # app can load it with hassil the same way, but carrying only the blocks
+        # its constrained grammar should enumerate.
+        s2p_lang_intents = filter_lang_intents(s2p_converted, supported_intents)
+        if s2p_lang_intents:
+            s2p_output: dict = {
+                "language": language,
+                "intents": s2p_lang_intents,
+            }
+            for shared_key in ("lists", "expansion_rules", "skip_words"):
+                if shared_key in merged_sentences:
+                    s2p_output[shared_key] = merged_sentences[shared_key]
+
+            # Responses, mirroring the Home Assistant JSON: shared error
+            # responses plus the per-intent responses.
+            s2p_responses: dict = {}
+            error_responses = merged_sentences.get("responses", {}).get("errors")
+            if error_responses:
+                s2p_responses["errors"] = error_responses
+            if lang_responses:
+                s2p_responses["intents"] = lang_responses
+            if s2p_responses:
+                s2p_output["responses"] = s2p_responses
+
+            s2p_path = s2p_target / f"{language}.json"
+            with s2p_path.open("w", encoding="utf-8") as s2p_file:
+                json.dump(s2p_output, s2p_file, ensure_ascii=False, indent=2)
 
     num_languages = len(languages)
     if num_processed_languages < num_languages:
