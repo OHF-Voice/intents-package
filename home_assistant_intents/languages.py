@@ -1,4 +1,5 @@
 LANGUAGES = [
+    "af",
     "ar",
     "bg",
     "bn",
@@ -17,6 +18,7 @@ LANGUAGES = [
     "fi",
     "fr",
     "gl",
+    "gu",
     "he",
     "hi",
     "hr",
@@ -27,6 +29,7 @@ LANGUAGES = [
     "it",
     "ja",
     "ka",
+    "kn",
     "ko",
     "kw",
     "lb",
