@@ -28,7 +28,7 @@
         {
           "sentences": [
             "what is [the] <temp>",
-            "how (hot|cold) is it"
+            "how (hot|cold|warm|cool) is it"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -159,7 +159,8 @@
         {
           "sentences": [
             "what is [the] {name}",
-            "what is the value of [the] {name}"
+            "what is the value of [the] {name}",
+            "tell me [the] {name}"
           ],
           "metadata": {
             "slot_combination": "name_only"
@@ -286,7 +287,8 @@
         },
         {
           "sentences": [
-            "set [the] brightness to {brightness}[ percent]"
+            "set [the] brightness to {brightness}[ percent]",
+            "set [the] brightness to {brightness}%"
           ],
           "metadata": {
             "slot_combination": "brightness_only"
@@ -334,7 +336,7 @@
         {
           "sentences": [
             "next [track|item]",
-            "skip [(song|track)]"
+            "(skip [(to [the] next [(song|track)]|([the] (song|track)|this [(song|track)]))])"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -407,7 +409,10 @@
       "data": [
         {
           "sentences": [
-            "previous (track|item)"
+            "previous (track|item)",
+            "go back [to the (previous|last) (song|track)]",
+            "replay [the (previous|last) (song|track)] [again]",
+            "play [the] (previous|last) [(song|track)] [again]"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -425,7 +430,7 @@
       "data": [
         {
           "sentences": [
-            "resume"
+            "(unpause|resume)"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -491,7 +496,10 @@
       "data": [
         {
           "sentences": [
-            "set [the] volume to {volume:volume_level}[ percent]"
+            "<numeric_value_set> volume to {volume:volume_level}[([ ]%)| percent]",
+            "turn volume (up|down) to {volume:volume_level}[([ ]%)| percent]",
+            "<numeric_value_set> the volume to {volume:volume_level}[([ ]%)| percent]",
+            "turn (the volume;(up|down)) to {volume:volume_level}[([ ]%)| percent]"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -509,10 +517,15 @@
       "data": [
         {
           "sentences": [
-            "turn [the] volume {volume_step}",
-            "turn {volume_step} [the] volume ",
-            "turn [the] volume up [by] {volume_step_up:volume_step}[ percent]",
-            "turn [the] volume down [by] {volume_step_down:volume_step}[ percent]"
+            "[turn [the]] volume {volume_step}",
+            "turn {volume_step} [the] volume",
+            "{volume_step} [the] volume",
+            "[turn [the]] volume up [by] {volume_step_up:volume_step}[%| percent]",
+            "turn up [the] volume [by] {volume_step_up:volume_step}[%| percent]",
+            "increase [the] volume [by] {volume_step_up:volume_step}[%| percent]",
+            "[turn [the]] volume down [by] {volume_step_down:volume_step}[%| percent]",
+            "turn down [the] volume [by] {volume_step_down:volume_step}[%| percent]",
+            "decrease [the] volume [by] {volume_step_down:volume_step}[%| percent]"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -567,7 +580,9 @@
         {
           "sentences": [
             "timer[s] status",
-            "how much time is left on [the|my] timer[s]"
+            "[how much] time [is] left on [the|my] timer[s]",
+            "how long [is] left on [the|my] timer[s]",
+            "status of [the|my] timer[s]"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -582,7 +597,7 @@
           "sentences": [
             "turn off [the] lights in [the] {area}",
             "turn off [the] {area} lights",
-            "{area} lights off"
+            "[the] {area} lights off"
           ],
           "metadata": {
             "slot_combination": "area_domain"
@@ -640,7 +655,9 @@
         {
           "sentences": [
             "turn off [the] {name}",
-            "switch off [the] {name}"
+            "switch off [the] {name}",
+            "deactivate [the] {name}",
+            "[the] {name} off"
           ],
           "metadata": {
             "slot_combination": "name_only"
@@ -692,7 +709,7 @@
           "sentences": [
             "turn on [the] lights in [the] {area}",
             "turn on [the] {area} lights",
-            "{area} lights on"
+            "[the] {area} lights on"
           ],
           "metadata": {
             "slot_combination": "area_domain"
@@ -769,7 +786,9 @@
         {
           "sentences": [
             "turn on [the] {name}",
-            "switch on [the] {name}"
+            "switch on [the] {name}",
+            "activate [the] {name}",
+            "[the] {name} on"
           ],
           "metadata": {
             "slot_combination": "name_only"
