@@ -25,7 +25,6 @@ LANGUAGES = [
     "hu",
     "hy",
     "id",
-    "intents",
     "is",
     "it",
     "ja",

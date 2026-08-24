@@ -20,6 +20,7 @@ data_dir="${intents_dir}/data"
 s2p_dir="${intents_dir}/speech_to_phrase"
 rm -rf "${data_dir}"
 rm -rf "${s2p_dir}"
+rm -f "${intents_dir}/intents.json"
 rm -rf "${base_dir}/dist"
 
 python3 "${base_dir}/script/merged_output.py" "${data_dir}"

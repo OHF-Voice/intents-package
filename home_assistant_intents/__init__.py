@@ -188,7 +188,7 @@ def get_intent_info(
     json_load: Callable[[IO[str]], Dict[str, Any]] = json.load,
 ) -> Optional[Dict[str, Any]]:
     """Load info for all intents."""
-    info_path = _DATA_DIR / "intents.json"
+    info_path = _DIR / "intents.json"
     if not info_path.exists():
         return None
 

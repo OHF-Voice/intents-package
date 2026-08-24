@@ -194,8 +194,10 @@ def main() -> None:
     with open(intents_path, "r", encoding="utf-8") as intents_file:
         intent_info = yaml.safe_load(intents_file)
 
-    # Write all intents info
-    intents_json_path = target / "intents.json"
+    # Write all intents info. This sits beside the data directory rather than in
+    # it: everything in there is a <language>.json and the language list is built
+    # by globbing it, so a file named for anything else becomes a language.
+    intents_json_path = target.parent / "intents.json"
     with open(intents_json_path, "w", encoding="utf-8") as intents_json_file:
         json.dump(intent_info, intents_json_file)
 
