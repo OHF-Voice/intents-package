@@ -16,3 +16,4 @@ venv/
 build/
 dist/
 home_assistant_intents/data/
+.python-version

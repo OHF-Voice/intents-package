@@ -1,0 +1,1465 @@
+{
+  "language": "cs",
+  "intents": {
+    "HassCancelTimer": {
+      "data": [
+        {
+          "sentences": [
+            "zruš časovač"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassClimateGetTemperature": {
+      "data": [
+        {
+          "sentences": [
+            "jaká je teplota v {area}"
+          ],
+          "metadata": {
+            "slot_combination": "area_only"
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "jaká je teplota"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "jaká je teplota {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "climate"
+            ]
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassDecreaseTimer": {
+      "data": [
+        {
+          "sentences": [
+            "zkrať časovač o {timer_range_hours:hours} hodin[(a|u|y)]"
+          ],
+          "metadata": {
+            "slot_combination": "hours_only"
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "zkrať časovač o {timer_range_minutes:minutes} minut[(a|u|y)]"
+          ],
+          "metadata": {
+            "slot_combination": "minutes_only"
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "zkrať časovač o {timer_range_seconds:seconds} sekund[(a|u|y)]"
+          ],
+          "metadata": {
+            "slot_combination": "seconds_only"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassFanSetSpeed": {
+      "data": [
+        {
+          "sentences": [
+            "nastav rychlost ventilátoru na {fan_speed:percentage} procent"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "nastav rychlost {name} na {fan_speed:percentage} procent"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "fan"
+            ]
+          },
+          "response": "fan"
+        }
+      ]
+    },
+    "HassGetCurrentDate": {
+      "data": [
+        {
+          "sentences": [
+            "jaké je dnešní datum"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassGetCurrentTime": {
+      "data": [
+        {
+          "sentences": [
+            "kolik je hodin"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassGetState": {
+      "data": [
+        {
+          "sentences": [
+            "jaký je stav {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "sensor"
+            ]
+          },
+          "response": "one"
+        },
+        {
+          "sentences": [
+            "je {name} {on_off_states:state}"
+          ],
+          "metadata": {
+            "slot_combination": "name_state"
+          },
+          "requires_context": {
+            "domain": [
+              "light",
+              "switch",
+              "fan"
+            ]
+          },
+          "response": "one_yesno"
+        },
+        {
+          "sentences": [
+            "je {name} {cover_states:state}"
+          ],
+          "metadata": {
+            "slot_combination": "name_state"
+          },
+          "requires_context": {
+            "domain": [
+              "cover",
+              "valve"
+            ]
+          },
+          "response": "one_yesno"
+        },
+        {
+          "sentences": [
+            "je {name} {lock_states:state}"
+          ],
+          "metadata": {
+            "slot_combination": "name_state"
+          },
+          "requires_context": {
+            "domain": [
+              "lock"
+            ]
+          },
+          "response": "one_yesno"
+        }
+      ]
+    },
+    "HassGetWeather": {
+      "data": [
+        {
+          "sentences": [
+            "jaké je počasí"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassIncreaseTimer": {
+      "data": [
+        {
+          "sentences": [
+            "prodluž časovač o {timer_range_hours:hours} hodin[(a|u|y)]"
+          ],
+          "metadata": {
+            "slot_combination": "hours_only"
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "prodluž časovač o {timer_range_minutes:minutes} minut[(a|u|y)]"
+          ],
+          "metadata": {
+            "slot_combination": "minutes_only"
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "prodluž časovač o {timer_range_seconds:seconds} sekund[(a|u|y)]"
+          ],
+          "metadata": {
+            "slot_combination": "seconds_only"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassLightSet": {
+      "data": [
+        {
+          "sentences": [
+            "nastav jas v {area} na {brightness} procent"
+          ],
+          "metadata": {
+            "slot_combination": "area_brightness"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "response": "brightness"
+        },
+        {
+          "sentences": [
+            "nastav jas světla na {brightness} procent"
+          ],
+          "metadata": {
+            "slot_combination": "brightness_only"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "brightness"
+        },
+        {
+          "sentences": [
+            "nastav jas {name} na {brightness} procent"
+          ],
+          "metadata": {
+            "slot_combination": "name_brightness"
+          },
+          "requires_context": {
+            "domain": [
+              "light"
+            ]
+          },
+          "response": "brightness"
+        }
+      ]
+    },
+    "HassMediaNext": {
+      "data": [
+        {
+          "sentences": [
+            "další skladba"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassMediaPause": {
+      "data": [
+        {
+          "sentences": [
+            "pauza"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassMediaPlayerMute": {
+      "data": [
+        {
+          "sentences": [
+            "ztlum zvuk"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassMediaPlayerUnmute": {
+      "data": [
+        {
+          "sentences": [
+            "zapni zvuk"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassMediaPrevious": {
+      "data": [
+        {
+          "sentences": [
+            "předchozí skladba"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassMediaUnpause": {
+      "data": [
+        {
+          "sentences": [
+            "pokračuj"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassNevermind": {
+      "data": [
+        {
+          "sentences": [
+            "to nevadí",
+            "zapomeň na to"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassPauseTimer": {
+      "data": [
+        {
+          "sentences": [
+            "pozastav časovač"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassSetPosition": {
+      "data": [
+        {
+          "sentences": [
+            "nastav pozici {name} na {position} procent"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "cover"
+            ]
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "nastav pozici {name} na {position} procent"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "valve"
+            ]
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassSetVolume": {
+      "data": [
+        {
+          "sentences": [
+            "nastav hlasitost na {volume:volume_level} procent"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassSetVolumeRelative": {
+      "data": [
+        {
+          "sentences": [
+            "{volume_step} hlasitost"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "zvyš hlasitost o {volume_step_up:volume_step} procent"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "sniž hlasitost o {volume_step_down:volume_step} procent"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassStartTimer": {
+      "data": [
+        {
+          "sentences": [
+            "nastav časovač na {timer_range_hours:hours} hodin[(a|u|y)]"
+          ],
+          "metadata": {
+            "slot_combination": "hours_only"
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "nastav časovač na {timer_range_minutes:minutes} minut[(a|u|y)]"
+          ],
+          "metadata": {
+            "slot_combination": "minutes_only"
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "nastav časovač na {timer_range_seconds:seconds} sekund[(a|u|y)]"
+          ],
+          "metadata": {
+            "slot_combination": "seconds_only"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassTimerStatus": {
+      "data": [
+        {
+          "sentences": [
+            "stav časovače"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassTurnOff": {
+      "data": [
+        {
+          "sentences": [
+            "vypni světla v {area}"
+          ],
+          "metadata": {
+            "slot_combination": "area_domain"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "response": "lights_area"
+        },
+        {
+          "sentences": [
+            "vypni ventilátory v {area}"
+          ],
+          "metadata": {
+            "slot_combination": "area_domain"
+          },
+          "slots": {
+            "domain": "fan"
+          },
+          "response": "fans_area"
+        },
+        {
+          "sentences": [
+            "vypni světla"
+          ],
+          "metadata": {
+            "slot_combination": "domain_only"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "light_all"
+        },
+        {
+          "sentences": [
+            "vypni světla v {floor}"
+          ],
+          "metadata": {
+            "slot_combination": "floor_domain"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "response": "lights_floor"
+        },
+        {
+          "sentences": [
+            "vypni {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "switch",
+              "fan",
+              "media_player",
+              "input_boolean"
+            ]
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "vypni {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "light"
+            ]
+          },
+          "response": "light"
+        },
+        {
+          "sentences": [
+            "zavři {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "cover"
+            ]
+          },
+          "response": "cover"
+        },
+        {
+          "sentences": [
+            "odemkni {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "lock"
+            ]
+          },
+          "response": "lock"
+        }
+      ]
+    },
+    "HassTurnOn": {
+      "data": [
+        {
+          "sentences": [
+            "zapni světla v {area}"
+          ],
+          "metadata": {
+            "slot_combination": "area_domain"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "response": "lights_area"
+        },
+        {
+          "sentences": [
+            "zapni ventilátory v {area}"
+          ],
+          "metadata": {
+            "slot_combination": "area_domain"
+          },
+          "slots": {
+            "domain": "fan"
+          },
+          "response": "fans_area"
+        },
+        {
+          "sentences": [
+            "zapni světla"
+          ],
+          "metadata": {
+            "slot_combination": "domain_only"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "light_all"
+        },
+        {
+          "sentences": [
+            "zapni světla v {floor}"
+          ],
+          "metadata": {
+            "slot_combination": "floor_domain"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "response": "lights_floor"
+        },
+        {
+          "sentences": [
+            "zapni {name} v {area}"
+          ],
+          "metadata": {
+            "slot_combination": "name_area"
+          },
+          "requires_context": {
+            "domain": [
+              "switch",
+              "fan",
+              "media_player",
+              "input_boolean"
+            ]
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "zapni {name} v {area}"
+          ],
+          "metadata": {
+            "slot_combination": "name_area"
+          },
+          "requires_context": {
+            "domain": [
+              "light"
+            ]
+          },
+          "response": "light"
+        },
+        {
+          "sentences": [
+            "zapni {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "switch",
+              "fan",
+              "media_player",
+              "input_boolean"
+            ]
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "zapni {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "light"
+            ]
+          },
+          "response": "light"
+        },
+        {
+          "sentences": [
+            "otevři {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "cover"
+            ]
+          },
+          "response": "cover"
+        },
+        {
+          "sentences": [
+            "zamkni {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "lock"
+            ]
+          },
+          "response": "lock"
+        }
+      ]
+    },
+    "HassUnpauseTimer": {
+      "data": [
+        {
+          "sentences": [
+            "obnov časovač"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        }
+      ]
+    }
+  },
+  "lists": {
+    "message": {
+      "wildcard": true
+    },
+    "temperature": {
+      "range": {
+        "type": "temperature",
+        "from": 0,
+        "to": 100,
+        "fractions": "halves"
+      }
+    },
+    "position": {
+      "range": {
+        "type": "percentage",
+        "from": 0,
+        "to": 100
+      }
+    },
+    "fan_speed": {
+      "range": {
+        "type": "percentage",
+        "from": 0,
+        "to": 100
+      }
+    },
+    "brightness": {
+      "range": {
+        "type": "percentage",
+        "from": 0,
+        "to": 100
+      }
+    },
+    "color_temperature": {
+      "range": {
+        "from": 1000,
+        "to": 10000,
+        "step": 100
+      }
+    },
+    "search_query": {
+      "wildcard": true
+    },
+    "volume": {
+      "range": {
+        "type": "percentage",
+        "from": 0,
+        "to": 100
+      }
+    },
+    "volume_step_up": {
+      "range": {
+        "type": "percentage",
+        "from": 0,
+        "to": 100
+      }
+    },
+    "volume_step_down": {
+      "range": {
+        "type": "percentage",
+        "from": 0,
+        "to": 100,
+        "multiplier": -1
+      }
+    },
+    "zone": {
+      "wildcard": true
+    },
+    "timer_seconds": {
+      "range": {
+        "from": 1,
+        "to": 100
+      }
+    },
+    "timer_minutes": {
+      "range": {
+        "from": 1,
+        "to": 100
+      }
+    },
+    "timer_hours": {
+      "range": {
+        "from": 1,
+        "to": 100
+      }
+    },
+    "timer_name": {
+      "wildcard": true
+    },
+    "timer_command": {
+      "wildcard": true
+    },
+    "shopping_list_item": {
+      "wildcard": true
+    },
+    "todo_list_item": {
+      "wildcard": true
+    },
+    "bs_open_states": {
+      "values": [
+        {
+          "in": "otevřen(ý|ej|á|é|ých|ejch|o|y)",
+          "out": "on"
+        },
+        {
+          "in": "(zavřen(ý|ej|á|é|ých|ejch|o|y)|zataženo)",
+          "out": "off"
+        }
+      ]
+    },
+    "bs_occupancy_states": {
+      "values": [
+        {
+          "in": "(přítomn|obsazen)(ý|ost|o)",
+          "out": "on"
+        },
+        {
+          "in": "ne(přítomn|obsazen)(ý|ost|o)",
+          "out": "off"
+        }
+      ]
+    },
+    "cover_classes": {
+      "values": [
+        {
+          "in": "markýz(a|y|u)",
+          "out": "awning"
+        },
+        {
+          "in": "(žaluzi(i|e|í)|rolet[(a|y|u)])",
+          "out": "blind"
+        },
+        {
+          "in": "závěs[y|ů]",
+          "out": "curtain"
+        },
+        {
+          "in": "dveře",
+          "out": "door"
+        },
+        {
+          "in": "((garážov(é|á|ých) (dveř(e|í)|vrat[a]))|vrata od garáže|garáž)",
+          "out": "garage"
+        },
+        {
+          "in": "brán(a|y)",
+          "out": "gate"
+        },
+        {
+          "in": "(clon(a|y)|stínítk(o|a|ek))",
+          "out": "shade"
+        },
+        {
+          "in": "okenice",
+          "out": "shutter"
+        },
+        {
+          "in": "(okn(o|a)|oken)",
+          "out": "window"
+        }
+      ]
+    },
+    "cover_states": {
+      "values": [
+        {
+          "in": "(otevřen[(ý|ej|á|é|ých|ejch|o)]|roztažen[(ý|ej|á|é|ých|ejch|o)])",
+          "out": "open"
+        },
+        {
+          "in": "(zavřen[(ý|ej|á|é|ých|ejch|o)]|zatažen[(ý|ej|á|é|ých|ejch|o)])",
+          "out": "closed"
+        },
+        {
+          "in": "[se] otevír(á|ají) [se]",
+          "out": "opening"
+        },
+        {
+          "in": "[se] zavír(á|ají) [se]",
+          "out": "closing"
+        }
+      ]
+    },
+    "color_temperature_names": {
+      "values": [
+        {
+          "in": "(světlo svíčky|svíčk(a|u))",
+          "out": 1900
+        },
+        {
+          "in": "tepl(á|ou|é) bíl(á|ou|é)",
+          "out": 2700
+        },
+        {
+          "in": "studen(á|ou|é) bíl(á|ou|é)",
+          "out": 4000
+        },
+        {
+          "in": "denní světlo",
+          "out": 6500
+        }
+      ]
+    },
+    "color": {
+      "values": [
+        {
+          "in": "bíl((ý|ej|á|é|ých|ejch|o)|ou)",
+          "out": "white"
+        },
+        {
+          "in": "čern((ý|ej|á|é|ých|ejch|o)|ou)",
+          "out": "black"
+        },
+        {
+          "in": "červen((ý|ej|á|é|ých|ejch|o)|ou)",
+          "out": "red"
+        },
+        {
+          "in": "oranžov((ý|ej|á|é|ých|ejch|o)|ou)",
+          "out": "orange"
+        },
+        {
+          "in": "žlut((ý|ej|á|é|ých|ejch|o)|ou)",
+          "out": "yellow"
+        },
+        {
+          "in": "zelen((ý|ej|á|é|ých|ejch|o)|ou)",
+          "out": "green"
+        },
+        {
+          "in": "modr((ý|ej|á|é|ých|ejch|o)|ou)",
+          "out": "blue"
+        },
+        {
+          "in": "fialov((ý|ej|á|é|ých|ejch|o)|ou)",
+          "out": "purple"
+        },
+        {
+          "in": "hněd((ý|ej|á|é|ých|ejch|o)|ou)",
+          "out": "brown"
+        }
+      ]
+    },
+    "brightness_level": {
+      "values": [
+        {
+          "in": "(max|maxi(mum|mální)|[co] nej(víc|vyšší|větší))",
+          "out": 100
+        },
+        {
+          "in": "(min|mini(mum|mální)|[co] nej(míň|menší|nižší))",
+          "out": 1
+        }
+      ]
+    },
+    "volume_step": {
+      "values": [
+        {
+          "in": "(zvyš|zvýšit|přidej|přidat|zesil|zesílit)",
+          "out": "up"
+        },
+        {
+          "in": "(sniž|snížit|uber|ubrat|zeslab[it])",
+          "out": "down"
+        }
+      ]
+    },
+    "volume_step_adverb": {
+      "values": [
+        {
+          "in": "hlasitěji",
+          "out": "up"
+        },
+        {
+          "in": "tišeji",
+          "out": "down"
+        }
+      ]
+    },
+    "volume_step_intensity": {
+      "values": [
+        {
+          "in": "zesil[it]",
+          "out": "up"
+        },
+        {
+          "in": "zeslab[it]",
+          "out": "down"
+        }
+      ]
+    },
+    "on_off_states": {
+      "values": [
+        {
+          "in": "(zapnut[(ý|ej|á|é|ých|ejch|o)]|rozsvícen[(ý|ej|á|é|ých|ejch|o)])",
+          "out": "on"
+        },
+        {
+          "in": "(vypnut(ý|ej|á|é|ých|ejch|o)|zhasnut[(ý|ej|á|é|ých|ejch|o)])",
+          "out": "off"
+        }
+      ]
+    },
+    "lock_states": {
+      "values": [
+        {
+          "in": "(zamčen|zamknut)(o|é|a|á|y|ý|ých)",
+          "out": "locked"
+        },
+        {
+          "in": "(odemčen|odemknut)(o|é|a|á|y|ý|ých)",
+          "out": "unlocked"
+        }
+      ]
+    },
+    "timer_range_seconds": {
+      "range": {
+        "from": 1,
+        "to": 120
+      }
+    },
+    "timer_range_minutes": {
+      "range": {
+        "from": 1,
+        "to": 120
+      }
+    },
+    "timer_range_hours": {
+      "range": {
+        "from": 1,
+        "to": 24
+      }
+    },
+    "numbers_fonetic": {
+      "values": [
+        {
+          "in": "jedn(a|u)",
+          "out": 1
+        },
+        {
+          "in": "dv(a|ě)",
+          "out": 2
+        }
+      ]
+    }
+  },
+  "expansion_rules": {
+    "teplota": "{temperature}[ ][°|stupňů]",
+    "area": "[(v|ve|na) ]{area}",
+    "floor": "[(v|ve|na) ]{floor}[ patře]",
+    "tady": "(tady|tu|zde|v této místnosti|v tomto pokoji)",
+    "zapnout": "zapn(i|out)",
+    "spustit": "[s]pus(ť|tit)",
+    "aktivovat": "aktiv(uj|ovat)",
+    "vypnout": "vypn(i|out)",
+    "rozsvitit": "(rozsviť|rozsvítit|rožn(i|out))",
+    "zhasnout": "zhasn(i|out)",
+    "svetla": "[všech[na] ]svět(lo|la|el)",
+    "nastavit": "nastav[it]",
+    "zmenit": "změ(ň|nit)",
+    "ztlumit": "(ztlu(m|it)|snížit|sniž)",
+    "zvysit": "zv(yš|ýšit)",
+    "upravit": "uprav[it]",
+    "zavrit": "zavř(i|ít)",
+    "otevrit": "otevř(i|ít)",
+    "roztahnout": "(roz|vy|od)táhn(out|i)",
+    "zatahnout": "(za|s)táhn(out|i)",
+    "prejit": "přej(ít|di)",
+    "zamknout": "zamk(ni|nout|či)",
+    "odemknout": "odem(kni|knout|či)",
+    "predchozi": "(předchozí|poslední|minul[á|ou|ý])",
+    "dalsi": "(další|následující)",
+    "oznam": "(oznam|řekni)",
+    "vsude": "(všude|všem|v celém domě)",
+    "pojmenovany": "(pojmenovan|nazvan)(ý|ého|ém|é|ou|ému)|se jménem",
+    "pozice": "{position}[[ ]%| procent]",
+    "fan_sg": "(ventilátor|větrák)",
+    "fan_pl": "(ventilátory|větráky)",
+    "fan_gen_sg": "(ventilátoru|větráku)",
+    "fan_gen_pl": "(ventilátorů|větráků)",
+    "fan_speed": "{fan_speed:percentage}[[ ]%| procent]",
+    "je": "(je|jsou)",
+    "jaky_je": "(jak[(ý|ej|á|é|ých|ejch|o)]|kolik) [(je|jsou)]",
+    "ktere": "(kter(ý|ej|á|é|ých|ejch|o)|jak[(ý|ej|á|é|ých|ejch|o)])",
+    "nektere": "(někter(ý|ej|á|é|ých|ejch|o)|nějak[(ý|ej|á|é|ých|ejch|o)])",
+    "kde_je": "kde (je|jsou)",
+    "lockable": "(zámek|zámky|zámků|dveře|dveří|okno|okna|oken|brán(a|y)|garážov(á|é) vrata|okenice)",
+    "brightness": "[na] {brightness}[%| procent]",
+    "volume": "{volume:volume_level}[[ ]%| procent]",
+    "hlasitost_nahoru": "(zvyš|zvýšit|přidej|přidat|zesil|zesílit)",
+    "hlasitost_dolu": "(sniž|snížit|uber|ubrat|zeslab[it])",
+    "zvuk_media": "(zvuk|hudbu|[multimediální ]přehrávač[e]|přehrávání hudby)",
+    "ztlumit_zvuk": "(ztlum[it]|umlč[et])",
+    "casovac": "(časovač[e|i|ů]|odpoč(et|ítávání|ej|tu|ty)|minut(ku|ce|ky))",
+    "timer_cancel": "(zastav[it]|zruš[it]|vypn(i|out))",
+    "timer_pause": "(pozastav[it]|přeruš[it]|pauza na)",
+    "timer_unpause": "(znovu spus(ť|tit)|obnov[it])",
+    "dur_seconds": "({timer_range_seconds:seconds}|{numbers_fonetic:seconds}) (sekund[(a|u|y)]|vteřin[(a|u|y)])",
+    "dur_minutes": "({timer_range_minutes:minutes}|{numbers_fonetic:minutes}) minut[(a|u|y)]",
+    "dur_hours": "({timer_range_hours:hours}|{numbers_fonetic:hours}) hodin[(a|u|y)]",
+    "start_seconds": "({timer_range_seconds:start_seconds}|{numbers_fonetic:start_seconds}) (sekund[(a|u|y)]|vteřin[(a|u|y)])",
+    "start_minutes": "({timer_range_minutes:start_minutes}|{numbers_fonetic:start_minutes}) minut[(a|u|y)]",
+    "start_hours": "({timer_range_hours:start_hours}|{numbers_fonetic:start_hours}) hodin[(a|u|y)]",
+    "vysavat": "(ukliď|uklidit|vyčisti|vyčistit|vysaj|vysát)"
+  },
+  "skip_words": [
+    "prosím",
+    "můžeš",
+    "mohl bys"
+  ],
+  "responses": {
+    "errors": {
+      "no_intent": "Promiňte, ale nerozumím",
+      "handle_error": "Při zpracování došlo k neočekávané chybě",
+      "no_area": "Promiňte, ale nebyla nalezena žádná oblast s názvem {{ area }}",
+      "no_floor": "Promiňte, ale nebylo nalezeno žádné patro s názvem {{ floor }}",
+      "no_domain": "Promiňte, ale nebylo nalezeno žádné zařízení typu {{ domain }}",
+      "no_domain_in_area": "Promiňte, ale v oblasti {{ area }} nebylo nalezeno žádné zařízení typu {{ domain }}",
+      "no_domain_in_floor": "Promiňte, ale na patře {{ floor }} nebylo nalezeno žádné zařízení typu {{ domain }}",
+      "no_device_class": "Promiňte, ale nebylo nalezeno žádné zařízení typu {{ device_class }}",
+      "no_device_class_in_area": "Promiňte, ale v oblasti {{ area }} nebylo nalezeno žádné zařízení typu {{ device_class }}",
+      "no_device_class_in_floor": "Promiňte, ale na patře {{ floor }} nebylo nalezeno žádné zařízení typu {{ device_class }}",
+      "no_entity": "Promiňte, ale nebyla nalezena žádná entita se jménem {{ entity }}",
+      "no_entity_in_area": "Promiňte, ale v oblasti {{ area }} nebyla nalezena žádná entita se jménem {{ entity }}",
+      "no_entity_in_floor": "Promiňte, ale na patře {{ floor }} nebyla nalezena žádná entita se jménem {{ entity }}",
+      "entity_wrong_state": "Promiňte, ale žádné zařízení není {{ state | lower }}",
+      "feature_not_supported": "Promiňte, ale žádné zařízení nepodporuje požadovanou funkci",
+      "no_entity_exposed": "Promiňte, ale entita se jménem {{ entity }} není vystavená",
+      "no_entity_in_area_exposed": "Promiňte, ale v oblasti {{ area }} není vystavená žádná entita se jménem {{ entity }}",
+      "no_entity_in_floor_exposed": "Promiňte, ale na patře {{ floor }} není vystavená žádná entita se jménem {{ entity }}",
+      "no_domain_exposed": "Promiňte, ale není vystaveno žádné zařízení typu {{ domain }}",
+      "no_domain_in_area_exposed": "Promiňte, ale v oblasti {{ area }} není vystaveno žádné zařízení typu {{ domain }}",
+      "no_domain_in_floor_exposed": "Promiňte, ale na patře {{ floor }} není vystaveno žádné zařízení typu {{ domain }}",
+      "no_device_class_exposed": "Promiňte, ale není vystaveno žádné zařízení typu {{ device_class }}",
+      "no_device_class_in_area_exposed": "Promiňte, ale v oblasti {{ area }} není vystaveno žádné zařízení typu {{ device_class }}",
+      "no_device_class_in_floor_exposed": "Promiňte, ale na patře {{ floor }} není vystaveno žádné zařízení typu {{ device_class }}",
+      "duplicate_entities": "Promiňte, ale existuje více entit se jménem {{ entity }}",
+      "duplicate_entities_in_area": "Promiňte, ale v oblasti {{ area }} existuje více entit se jménem {{ entity }}",
+      "duplicate_entities_in_floor": "Promiňte, ale na patře {{ floor }} existuje více entit se jménem {{ entity }}",
+      "timer_not_found": "Promiňte, ale tento časovač nebyl nalezen",
+      "multiple_timers_matched": "Promiňte, ale nelze cílit na vícero časovačů",
+      "no_timer_support": "Promiňte, ale na tomto zařízení nejsou časovače podporovány"
+    },
+    "intents": {
+      "HassGetState": {
+        "default": "{{ state.state_with_unit }}",
+        "one": "{{ slots.name | capitalize }} je {{ state.state_with_unit }}\n",
+        "one_yesno": "{% set present_continuous = ('je', 'jí', 'rá') %}\n{% set present_simple = ('no', 'ná', 'né') %}\n\n{% if query.matched %}\n  Ano\n{% else %}\n  Ne, {{ state.state_with_unit }}\n{% endif %}\n",
+        "any": "{% if query.matched %}\n  {% set match = query.matched | map(attribute=\"name\") | sort | list %}\n  {% if match | length > 4 %}\n    Ano, {{ match[:3] | join(\", \") }} a {{ (match | length - 3) }} další\n  {%- else -%}\n    Ano,\n    {% for name in match -%}\n      {% if not loop.first and not loop.last %}, {% elif loop.last and not loop.first %} a {% endif -%}\n      {{ name }}\n    {%- endfor -%}\n  {% endif %}\n{% else %}\n  Ne\n{% endif %}\n",
+        "all": "{% if not query.unmatched: %}\n  Ano\n{% else %}\n  {% set no_match = query.unmatched | map(attribute=\"name\") | sort | list %}\n  {% if no_match | length > 4 %}\n    Ne, {{ no_match[:3] | join(\", \") }} a {{ (no_match | length - 3) }} další jsou {{ state.state_with_unit }}\n  {%- else -%}\n    Ne,\n    {% if state.state_with_unit == \"home\" %}\n      {% set state_with_unit = \"doma\" %}\n    {% elif state.state_with_unit == \"not_home\" %}\n      {% set state_with_unit = \"mimo domov\" %}\n    {% else %}\n      {% set state_with_unit = state.state_with_unit %}\n    {% endif %}\n    {% for name in no_match -%}\n      {% if not loop.first and not loop.last %}, {% elif loop.last and not loop.first %} a {% endif -%}\n      {{ name }}\n    {%- endfor %} {{ 'není' if no_match | length == 1 else 'nejsou'}} {{ state_with_unit }}\n  {% endif %}\n{% endif %}\n",
+        "which": "{% if not query.matched %}\n  Žádné\n{% else: %}\n  {% set match = query.matched | map(attribute=\"name\") | sort | list %}\n  {% if match | length > 4 %}\n    {{ match[:3] | join(\", \") }} a {{ (match | length - 3) }} další\n  {% else %}\n    {%- for name in match -%}\n      {% if not loop.first and not loop.last %}, {% elif loop.last and not loop.first %} a {% endif -%}\n      {{ name }}\n    {%- endfor -%}\n  {% endif %}\n{% endif %}\n",
+        "how_many": "{{ query.matched | length }}\n",
+        "where": "{% if state.state == \"not_home\" %}\n  {{ slots.name | capitalize }} je mimo domov\n{% elif state.state == \"home\" %}\n  {{ slots.name | capitalize }} je doma\n{% else %}\n  {{ slots.name | capitalize }} je v zóně {{ state.state }}\n{% endif %}\n"
+      },
+      "HassTurnOff": {
+        "default": "Vypnuto",
+        "lights_area": "Světla zhasnuta",
+        "lights_floor": "Světla zhasnuta",
+        "fan": "Větrák vypnut",
+        "fans_area": "Větráky vypnuty",
+        "light": "Zhasnuto",
+        "light_all": "Všechna světla byla zhasnuta",
+        "cover": "Zavřeno",
+        "cover_device_class": "Zavřeno",
+        "garage": "Vrata zavřena",
+        "curtain": "Zataženo",
+        "valve": "Zavřeno",
+        "lock": "Odemčeno"
+      },
+      "HassClimateSetTemperature": {
+        "default": "Teplota nastavena"
+      },
+      "HassStartTimer": {
+        "default": "{% set h = slots.hours if slots.hours is defined else none %} {% set m = slots.minutes if slots.minutes is defined else none %} {% set s = slots.seconds if slots.seconds is defined else none %} {% set h_text = h ~ (' hodinu' if h in [ \"1\", 'jedna', 'jednu'] else ' hodiny' if h in [ \"2\", \"3\", \"4\"] else ' hodin') if h else '' %} {% set m_text = m ~ (' minutu' if m in [ \"1\", 'jedna', 'jednu'] else ' minuty' if m in [ \"2\", \"3\", \"4\"] else ' minut') if m else '' %} {% set s_text = s ~ (' sekundu' if s in [ \"1\", 'jedna', 'jednu'] else ' sekundy' if s in [ \"2\", \"3\", \"4\"] else ' sekund') if s else '' %} {% set text_list = [ h_text, m_text, s_text] | select() | list %} {% set text = text_list[:-1] | join(', ') ~ ' a ' ~ text_list[-1] if text_list | count > 2 else text_list | join(' a ') %} {% set name = ('pojmenovaný ' ~ slots.name | trim) if slots.name is defined else '' %} Časovač {{ name }} nastaven na {{ text }}\n",
+        "command": "{% set h = slots.hours if slots.hours is defined else none %} {% set m = slots.minutes if slots.minutes is defined else none %} {% set s = slots.seconds if slots.seconds is defined else none %} {% set h_text = h ~ (' hodinu' if h in [ \"1\", 'jedna', 'jednu'] else ' hodiny' if h in [ \"2\", \"3\", \"4\"] else ' hodin') if h else '' %} {% set m_text = m ~ (' minutu' if m in [ \"1\", 'jedna', 'jednu'] else ' minuty' if m in [ \"2\", \"3\", \"4\"] else ' minut') if m else '' %} {% set s_text = s ~ (' sekundu' if s in [ \"1\", 'jedna', 'jednu'] else ' sekundy' if s in [ \"2\", \"3\", \"4\"] else ' sekund') if s else '' %} {% set text_list = [ h_text, m_text, s_text] | select() | list %} {% set text = text_list[:-1] | join(', ') ~ ' a ' ~ text_list[-1] if text_list | count > 2 else text_list | join(' a ') %} Příkaz bude proveden za {{ text }}\n"
+      },
+      "HassShoppingListAddItem": {
+        "item_added": "Přidáno: {{ slots.item }}"
+      },
+      "HassTurnOn": {
+        "default": "Zapnuto",
+        "lights_area": "Světla rozsvícena",
+        "lights_floor": "Světla rozsvícena",
+        "light_all": "Všechna světla byla rozsvícena",
+        "fans_area": "Větráky zapnuty",
+        "fan": "Větrák zapnut",
+        "light": "Rozsvíceno",
+        "cover": "Otevřeno",
+        "cover_device_class": "Otevřeno",
+        "garage": "Vrata otevřena",
+        "curtain": "Roztaženo",
+        "scene": "Scéna aktivována",
+        "script": "Spuštěno",
+        "valve": "Otevřeno",
+        "lock": "Zamčeno"
+      },
+      "HassMediaPause": {
+        "default": "Zastaveno"
+      },
+      "HassGetCurrentTime": {
+        "default": "{% set minute_str = '{0:02d}'.format(slots.time.minute) %}\n{% if slots.time.hour in [2, 3, 4]: %} jsou {{ slots.time.hour }}:{{ minute_str }} {% else: %} je {{ slots.time.hour }}:{{ minute_str }} {% endif %}\n"
+      },
+      "HassPauseTimer": {
+        "default": "Časovač pozastaven"
+      },
+      "HassNevermind": {
+        "default": ""
+      },
+      "HassTimerStatus": {
+        "default": "{% macro pluralize_flexed(number, flexes) %}\n  {% if (number|string)[-1] in [\"1\"]: %}\n    {{ number }} {{ flexes[0] }}\n  {% elif (number|string)[-1] in [\"2\", \"3\", \"4\"]: %}\n    {{ number }} {{ flexes[1] }}\n  {% elif (number|string)[-1] in [\"5\", \"6\", \"7\", \"8\", \"9\"]: %}\n    {{ number }} {{ flexes[2] }}\n  {% else %}\n  {% endif %}\n{% endmacro %}\n{% set hours_flexed = ['hodina', 'hodiny', 'hodin'] %}\n{% set minutes_flexed = ['minuta', 'minuty', 'minut'] %}\n{% set seconds_flexed = ['sekunda', 'sekundy', 'sekund'] %}\n{% set hours_start_flexed = ['hodinu', 'hodiny', 'hodin'] %}\n{% set minutes_start_flexed = ['minutu', 'minuty', 'minut'] %}\n{% set seconds_start_flexed = ['sekundu', 'sekundy', 'sekund'] %}\n{% set timers_paused_flexed = ['časovač pozastaven.', 'časovače pozastaveny.', 'časovačů pozastaveno.'] %}\n{% set timers_running_flexed = ['', 'časovače spuštěny.', 'časovačů spuštěno.'] %}\n{% set num_timers = slots.timers | length %}\n{% set active_timers = slots.timers | selectattr('is_active') | list %}\n{% set num_active_timers = active_timers | length %}\n{% set paused_timers = slots.timers | rejectattr('is_active') | list %}\n{% set num_paused_timers = paused_timers | length %}\n{% set next_timer = None %}\n{% if num_timers == 0: %}\n  Žádné časovače.\n{% elif num_active_timers == 0: %}\n  {# No active timers #}\n  {% if num_paused_timers == 1: %}\n    {% set next_timer = paused_timers[0] %}\n    Časovač je pozastaven.\n  {% else: %}\n    {{ pluralize_flexed(num_paused_timers, timers_paused_flexed) }}\n  {% endif %}\n{% else: %}\n  {# At least one active timer #}\n  {% if num_active_timers == 1: %}\n    {% set next_timer = active_timers[0] %}\n  {% else: %}\n    {# Get active timer that will finish soonest #}\n    {% set sorted_timers = active_timers | sort(attribute='total_seconds_left') %}\n    {% set next_timer = sorted_timers[0] %}\n    {{ pluralize_flexed(num_active_timers, timers_running_flexed) }}\n  {% endif %}\n  {{ pluralize_flexed(num_paused_timers, timers_paused_flexed) }}\n{% endif %}\n{% if next_timer: %}\n  {# At least one active timer #}\n  Zbývající čas\n  {{ ' '.join([pluralize_flexed(next_timer.rounded_hours_left, hours_flexed), pluralize_flexed(next_timer.rounded_minutes_left, minutes_flexed), pluralize_flexed(next_timer.rounded_seconds_left, seconds_flexed)]) }}\n  {% if num_timers > 1: %}\n    {# Give some extra information to disambiguate #}\n    na časovači spuštěném na\n    {{ ' '.join([pluralize_flexed(next_timer.start_hours, hours_start_flexed), pluralize_flexed(next_timer.start_minutes, minutes_start_flexed), pluralize_flexed(next_timer.start_seconds, seconds_start_flexed)]) }}\n    {% if next_timer.name: %}\n      pojmenovaném {{ next_timer.name }}\n    {% elif next_timer.area: %}\n      v {{ next_timer.area }}\n    {% endif %}\n  {% endif %}\n{% endif %}\n"
+      },
+      "HassListAddItem": {
+        "item_added": "Přidáno: {{ slots.item }}"
+      },
+      "HassMediaPlayerUnmute": {
+        "default": "Zvuk zapnut"
+      },
+      "HassGetCurrentDate": {
+        "default": "{% set months = {\n   1: 'ledna',\n   2: 'února',\n   3: 'března',\n   4: 'dubna',\n   5: 'května',\n   6: 'června',\n   7: 'července',\n   8: 'srpna',\n   9: 'září',\n   10: 'října',\n   11: 'listopadu',\n   12: 'prosince',\n} %} {{ slots.date.day }}. {{ months[slots.date.month] }}, {{ slots.date.year }}\n"
+      },
+      "HassUnpauseTimer": {
+        "default": "Časovač obnoven"
+      },
+      "HassMediaPrevious": {
+        "default": "Hraji předchozí"
+      },
+      "HassVacuumCleanArea": {
+        "default": "Vysávám v {{ slots.area }}"
+      },
+      "HassLawnMowerStartMowing": {
+        "default": "Spouštím sekačku"
+      },
+      "HassGetWeather": {
+        "default": "{% set weather_condition = {\n  'clear': 'a jasno',\n  'clear-night': 'a jasno',\n  'cloudy': 'a zamračeno',\n  'exceptional': 'a výjímečně',\n  'fog': 's mlhou',\n  'hail': 's kroupami',\n  'lightning': 's bouřkami',\n  'lightning-rainy': 's bouřkami a deštěm',\n  'partlycloudy': 'a částečně zamračeno',\n  'pouring': 'a silný déšť',\n  'rainy': 'a přeháňky',\n  'snowy': 'a sněžení',\n  'snowy-rainy': 'a déšť se sněhem',\n  'sunny': 'a slunečno',\n  'windy': 'a větrno',\n  'windy-variant': 'se silným větrem'\n} %} {{ state.attributes.get('temperature') }} {{ state.attributes.get('temperature_unit') }} {{ weather_condition.get((state.state | string).lower(), \"\") }}\n"
+      },
+      "HassLightSet": {
+        "brightness": "Jas nastaven",
+        "color": "Barva nastavena",
+        "temperature": "Teplota barvy nastavena"
+      },
+      "HassCancelAllTimers": {
+        "default": "{% if slots.canceled < 1: %} Žádné časovače nebyly zrušeny. {% elif slots.canceled == 1: %} Zrušen 1 časovač. {% elif slots.canceled < 5: %} Zrušeny {{ slots.canceled }} časovače. {% else: %} Zrušeno {{ slots.canceled }} časovačů. {% endif %}\n",
+        "area": "{% if slots.canceled < 1: %} Žádné časovače v {{ slots.area }} nebyly zrušeny. {% elif slots.canceled == 1: %} Zrušen časovač v {{ slots.area }}. {% elif slots.canceled < 5: %} Zrušeny {{ slots.canceled }} časovače v {{ slots.area }}. {% else: %} Zrušeno {{ slots.canceled }} časovačů v {{ slots.area }}. {% endif %}\n"
+      },
+      "HassLawnMowerDock": {
+        "default": "Vracím sekačku do doku"
+      },
+      "HassBroadcast": {
+        "default": "Hotovo"
+      },
+      "HassVacuumStart": {
+        "default": "{% if slots.name is defined and slots.name %}\n  Spouštím {{ slots.name }}\n{% else %}\n  Spouštím vysavač\n{% endif %}\n"
+      },
+      "HassMediaUnpause": {
+        "default": "Pokračuji"
+      },
+      "HassShoppingListCompleteItem": {
+        "item_completed": "Odškrtnuto: {{ slots.item }}"
+      },
+      "HassSetPosition": {
+        "default": "Pozice nastavena",
+        "cover_device_class": "Pozice nastavena"
+      },
+      "HassMediaNext": {
+        "default": "Hraji další"
+      },
+      "HassSetVolumeRelative": {
+        "default": "Hlasitost upravena"
+      },
+      "HassCancelTimer": {
+        "default": "Časovač zastaven"
+      },
+      "HassMediaSearchAndPlay": {
+        "default": "{% if slots.media: %}\nPřehrávání začíná\n{% else: %}\nNenalezen žádný odpovídající obsah\n{% endif %}\n"
+      },
+      "HassClimateGetTemperature": {
+        "default": "{% set current_temperature = state_attr(state.entity_id, 'current_temperature') %} {% set raw_temperature = state.state if current_temperature is none else current_temperature %} {% set temperature = raw_temperature | float(none) %} {% if temperature is not none %}\n  {% set rounded_temp = (temperature | int) if temperature % 1 == 0 else (temperature | round(1)) %}\n  {% set degree_word = 'stupeň' if rounded_temp == 1 else 'stupně' if rounded_temp in [2,3,4] or rounded_temp % 1 != 0 else 'stupňů' %}\n  {{ rounded_temp }} {{ degree_word }}\n{% else %}\n  Omlouvám se, ale nemohu zjistit aktuální teplotu.\n{% endif %}\n"
+      },
+      "HassSetVolume": {
+        "default": "Hlasitost nastavena"
+      },
+      "HassFanSetSpeed": {
+        "default": "Rychlost ventilátorů upravena",
+        "fan": "Rychlost ventilátoru upravena"
+      },
+      "HassListCompleteItem": {
+        "item_completed": "Odškrtnuto: {{ slots.item }}"
+      },
+      "HassDecreaseTimer": {
+        "default": "{% set h = slots.hours if slots.hours is defined else none %} {% set m = slots.minutes if slots.minutes is defined else none %} {% set s = slots.seconds if slots.seconds is defined else none %} {% set h_text = h ~ (' hodinu' if h in [ \"1\", 'jedna', 'jednu'] else ' hodiny' if h in [ \"2\", \"3\", \"4\"] else ' hodin') if h else '' %} {% set m_text = m ~ (' minutu' if m in [ \"1\", 'jedna', 'jednu'] else ' minuty' if m in [ \"2\", \"3\", \"4\"] else ' minut') if m else '' %} {% set s_text = s ~ (' sekundu' if s in [ \"1\", 'jedna', 'jednu'] else ' sekundy' if s in [ \"2\", \"3\", \"4\"] else ' sekund') if s else '' %} {% set text_list = [ h_text, m_text, s_text] | select() | list %} {% set text = text_list[:-1] | join(', ') ~ ' a ' ~ text_list[-1] if text_list | count > 2 else text_list | join(' a ') %} {% set name = ('pojmenovaný ' ~ slots.name | trim) if slots.name is defined else '' %} Časovač {{ name }} zkrácen o {{ text }}\n"
+      },
+      "HassIncreaseTimer": {
+        "default": "{% set h = slots.hours if slots.hours is defined else none %} {% set m = slots.minutes if slots.minutes is defined else none %} {% set s = slots.seconds if slots.seconds is defined else none %} {% set h_text = h ~ (' hodinu' if h in [ \"1\", 'jedna', 'jednu'] else ' hodiny' if h in [ \"2\", \"3\", \"4\"] else ' hodin') if h else '' %} {% set m_text = m ~ (' minutu' if m in [ \"1\", 'jedna', 'jednu'] else ' minuty' if m in [ \"2\", \"3\", \"4\"] else ' minut') if m else '' %} {% set s_text = s ~ (' sekundu' if s in [ \"1\", 'jedna', 'jednu'] else ' sekundy' if s in [ \"2\", \"3\", \"4\"] else ' sekund') if s else '' %} {% set text_list = [ h_text, m_text, s_text] | select() | list %} {% set text = text_list[:-1] | join(', ') ~ ' a ' ~ text_list[-1] if text_list | count > 2 else text_list | join(' a ') %} {% set name = ('pojmenovaný ' ~ slots.name | trim) if slots.name is defined else '' %} Časovač {{ name }} prodloužen o {{ text }}\n"
+      },
+      "HassMediaPlayerMute": {
+        "default": "Ztlumeno"
+      },
+      "HassVacuumReturnToBase": {
+        "default": "{% if slots.name is defined and slots.name %}\n  Vracím {{ slots.name }} do doku\n{% else %}\n  Vracím vysavač do doku\n{% endif %}\n"
+      },
+      "HassListRemoveItem": {
+        "item_deleted": "Odebráno: {{ slots.item }}"
+      },
+      "HassRespond": {
+        "default": "",
+        "hello": "Zdraví vás Home Assistant.",
+        "listening": "Nikoliv, nahrávám pouze po té, co řeknete probouzecí slovo.",
+        "data": "Vaše data jsou odesílána na Váš Home Assistant server.",
+        "commands": "Seznam hlasových příkazů naleznete na stránce home pomlčka assistant tečka I.O. lomeno voice.",
+        "creator": "Byl jsem vytvořen úžasnou Home Assistant komunitou, složenou z nadšenců z celého světa."
+      }
+    }
+  }
+}
