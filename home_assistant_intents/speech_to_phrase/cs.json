@@ -320,7 +320,7 @@
       "data": [
         {
           "sentences": [
-            "pauza"
+            "(zastav|pozastav|pauzuj|zapauzuj) (písničku|skladbu|program)"
           ],
           "metadata": {
             "slot_combination": "default"

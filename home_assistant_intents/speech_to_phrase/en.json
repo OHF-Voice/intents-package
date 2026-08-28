@@ -335,8 +335,9 @@
       "data": [
         {
           "sentences": [
-            "next [track|item]",
-            "(skip [(to [the] next [(song|track)]|([the] (song|track)|this [(song|track)]))])"
+            "next <track>",
+            "skip [this|the] <track>",
+            "skip to [the] next <track>"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -354,8 +355,8 @@
       "data": [
         {
           "sentences": [
-            "pause",
-            "stop [playing]"
+            "pause [<the>] <media>",
+            "stop [playing] [<the>] <media>"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -373,7 +374,7 @@
       "data": [
         {
           "sentences": [
-            "mute"
+            "mute [<the>] <media>"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -391,7 +392,7 @@
       "data": [
         {
           "sentences": [
-            "unmute"
+            "unmute [<the>] <media>"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -409,10 +410,10 @@
       "data": [
         {
           "sentences": [
-            "previous (track|item)",
-            "go back [to the (previous|last) (song|track)]",
-            "replay [the (previous|last) (song|track)] [again]",
-            "play [the] (previous|last) [(song|track)] [again]"
+            "previous <track>",
+            "go back to the (previous|last) <track>",
+            "replay the (previous|last) <track> [again]",
+            "play [the] (previous|last) <track> [again]"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -430,7 +431,7 @@
       "data": [
         {
           "sentences": [
-            "(unpause|resume)"
+            "(unpause|resume) [<the>] <media>"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -1211,6 +1212,8 @@
     "how_many": "how many [of <the>]",
     "lockable": "[<the>] (lock|door|window|gate|garage door|shutter)[s]",
     "light": "(light|lights|lighting|lamp|lamps)",
+    "track": "(song|track|item)",
+    "media": "(music|movie|[tv] show[s]|media [player[s]]|<track>)",
     "timer_set": "(start|set|create)",
     "timer_cancel": "(cancel|stop)",
     "timer_remove": "(remove|take)",

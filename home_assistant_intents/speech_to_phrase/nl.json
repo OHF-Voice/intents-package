@@ -332,7 +332,7 @@
       "data": [
         {
           "sentences": [
-            "pauzeer"
+            "(pauzeer|stop) de (muziek|aflevering|film)"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -404,7 +404,7 @@
       "data": [
         {
           "sentences": [
-            "hervat"
+            "hervat de (muziek|aflevering|film)"
           ],
           "metadata": {
             "slot_combination": "default"

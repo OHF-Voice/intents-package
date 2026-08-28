@@ -338,7 +338,8 @@
       "data": [
         {
           "sentences": [
-            "(pause|pausiere|stopp)"
+            "(pausiere|stoppe) die (musik|sendung)",
+            "(musik|sendung) (pausieren|anhalten|stoppen)"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -413,9 +414,7 @@
       "data": [
         {
           "sentences": [
-            "fortsetzen",
-            "weiter machen",
-            "musik fortsetzen"
+            "[die ](musik|sendung) (fortsetzen|weiter machen)"
           ],
           "metadata": {
             "slot_combination": "default"

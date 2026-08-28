@@ -332,8 +332,7 @@
       "data": [
         {
           "sentences": [
-            "pausa",
-            "pausa la música"
+            "pausa (la música|el programa|la reproducción)"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -351,8 +350,8 @@
       "data": [
         {
           "sentences": [
-            "silenciar",
-            "quita el sonido"
+            "silencia (la música|el audio|la reproducción)",
+            "quita el (sonido|volumen)"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -407,8 +406,7 @@
       "data": [
         {
           "sentences": [
-            "continúa",
-            "reanuda la reproducción"
+            "(continúa|reanuda) (la música|el programa|la reproducción)"
           ],
           "metadata": {
             "slot_combination": "default"

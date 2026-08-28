@@ -334,8 +334,8 @@
       "data": [
         {
           "sentences": [
-            "pause",
-            "arrête la lecture"
+            "arrête la (lecture|musique)",
+            "mets la musique en pause"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -354,7 +354,7 @@
         {
           "sentences": [
             "mets le son en sourdine",
-            "sourdine"
+            "coupe le son"
           ],
           "metadata": {
             "slot_combination": "default"

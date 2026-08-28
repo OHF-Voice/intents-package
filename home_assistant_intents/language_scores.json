@@ -34,6 +34,11 @@
     "focused_local": 2,
     "full_local": 3
   },
+  "cy-GB": {
+    "cloud": 3,
+    "focused_local": 0,
+    "full_local": 0
+  },
   "da-DK": {
     "cloud": 3,
     "focused_local": 0,

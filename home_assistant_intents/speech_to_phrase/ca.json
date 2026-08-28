@@ -332,7 +332,8 @@
       "data": [
         {
           "sentences": [
-            "pausa"
+            "pausa la (música|reproducció|sèrie)",
+            "atura la (reproducció|música)"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -350,7 +351,9 @@
       "data": [
         {
           "sentences": [
-            "silencia"
+            "silencia la música",
+            "silencia el reproductor",
+            "treu el so"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -404,7 +407,7 @@
       "data": [
         {
           "sentences": [
-            "continua"
+            "(continua|reprèn|reanuda) la (música|reproducció|sèrie)"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -422,8 +425,8 @@
       "data": [
         {
           "sentences": [
-            "res",
-            "deixa-ho"
+            "deixa-ho",
+            "oblida-ho"
           ],
           "metadata": {
             "slot_combination": "default"

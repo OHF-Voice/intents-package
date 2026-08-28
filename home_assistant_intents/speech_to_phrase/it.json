@@ -272,8 +272,8 @@
       "data": [
         {
           "sentences": [
-            "pausa",
-            "metti in pausa la musica"
+            "metti in pausa la musica",
+            "pausa (la musica|il programma|il media player)"
           ],
           "metadata": {
             "slot_combination": "default"
@@ -310,8 +310,7 @@
       "data": [
         {
           "sentences": [
-            "riprendi",
-            "riprendi la musica"
+            "riprendi (la musica|il programma|il media player)"
           ],
           "metadata": {
             "slot_combination": "default"
