@@ -255,7 +255,7 @@ def test_speech_to_phrase_recognizes_samples() -> None:
 
     samples = {
         "nevermind": "HassNevermind",
-        "mute": "HassMediaPlayerMute",
+        "mute music": "HassMediaPlayerMute",
         "turn on the lights": "HassTurnOn",
         "set a timer for 5 minutes": "HassStartTimer",
         "turn on the kitchen light": "HassTurnOn",
