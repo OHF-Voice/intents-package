@@ -1193,6 +1193,7 @@
     "cierra": "(cierr(a|e)|cerr(ar|á)|<baja>)",
     "completa": "(complet(a|e|ar|á)|finaliz(a|ar|á)|finalice|termin(a|e|ar|á))",
     "completado": "(completad(o|a)[s]|hech(o|a)[s]|realizad(o|a)[s])",
+    "completa_compra": "complet(a|e|ar|á)",
     "continúa": "(contin(úa|úe|uar|uá)|(sig(ue|a)|segu(ir|í))|(reactiv(a|e|ar|á))|reanud(a|e|ar|á))",
     "crea": "(cre(a|e|ar|á))",
     "cual_es": "(cu(a|á)l es [el |la ]|cu(a|á)les son [los |las ]|c(o|ó)mo (va|está|marcha|se encuentra)[n] [el |la |los |las ])",
@@ -1209,9 +1210,12 @@
     "establece": "(pon[ga|er|é]|estable[z]c(a|e|er|é)|ajust(a|e|ar|á)|configur(a|e|ar|á)|cambi(a[r]|á|e))",
     "establece_abre_cierra": "(<establece>|<abre>|<cierra>)",
     "establece_sube_baja": "(<establece>|<enciende>|<sube>|<baja>)",
+    "estado_compra": "(comprad(o|a)[s]|completad(o|a)[s]|hech(o|a)[s])",
     "floor": "[([en|de] [el|la]|del)] ([planta|piso] {floor}|{floor} [planta|piso])",
     "inicia": "(inici(a|e|ar|á)|com[i]en(za|ce|zar|zá)|emp[i]e(za|ce|zar|zá))",
     "lista_nombre": "((de|en) [[mi] lista[do]|[la] lista|lista[do]] [de|del|de la[s]|de los] {name}|(del|en [el]) listado [de|del|de la[s]|de los] {name}|(de|en) {name})",
+    "lista_compra": "[mi|la] lista [de (la compra|compra[s])]",
+    "lista_compra_explicita": "[mi|la] lista de (la compra|compra[s])",
     "luces": "[el|la|los|las] (luz|luces|lámpara[s]|bombill(a|o)[s]|ampolleta[s]|luminaria[s]|lamparilla[s]|foco[s]|interruptor[es]|llave[s][ de la luz])",
     "marca": "(marc(a|ar|á)|marque)",
     "otra_vez": "(otra vez|de nuevo|una vez más)",
@@ -1337,7 +1341,7 @@
         "command": "Orden recibida"
       },
       "HassShoppingListAddItem": {
-        "item_added": "Se añadió {{ slots.item }}"
+        "item_added": "He añadido {{ slots.item }}"
       },
       "HassTurnOn": {
         "default": "{% set translations = {\n  \"button\": \"el botón\",\n  \"camera\": \"la cámara\",\n  \"input_button\": \"el botón\",\n  \"alarm_control_panel\": \"la alarma\",\n  \"automation\": \"la automatización\",\n  \"fan\": \"el ventilador\",\n  \"climate\": \"el termostato\",\n  \"humidifier\": \"el humidificador\",\n  \"input_boolean\": \"el interruptor\",\n  \"siren\": \"la sirena\",\n  \"water_heater\": \"el calentador de agua\",\n  \"light\": \"la luz\",\n  \"switch\": \"el interruptor\",\n  \"remote\": \"el control remoto\",\n  \"vacuum\": \"la aspiradora\",\n  \"media_player\": \"el reproductor\",\n  \"lawn_mower\": \"el cortacésped\"\n} %} Se ha activado {{ translations.get(state.domain) }}",
@@ -1404,7 +1408,7 @@
         "default": "Continuando reproducción"
       },
       "HassShoppingListCompleteItem": {
-        "item_completed": "{{ slots.item }} marcado como completado"
+        "item_completed": "He completado {{ slots.item }}"
       },
       "HassSetPosition": {
         "default": "Posición establecida"

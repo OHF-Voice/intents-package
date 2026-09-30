@@ -248,6 +248,50 @@
     "todo_list_item": {
       "wildcard": true
     },
+    "fan_mode": {
+      "values": [
+        {
+          "in": "(തനിയെ|താനേ|സ്വയം|ഓട്ടോ|ഓട്ടോമാറ്റിക്)",
+          "out": "auto"
+        },
+        {
+          "in": "(ഓൺ|തുടർച്ചയായി)",
+          "out": "on"
+        },
+        {
+          "in": "(ഓഫ്|നിർത്തിയത്)",
+          "out": "off"
+        },
+        {
+          "in": "(അടിയറ്റം|താഴ്ന്നത്|കുറഞ്ഞത്|കുറവ്|ലോ)",
+          "out": "low"
+        },
+        {
+          "in": "(ഇടത്തരം|മിതം|മീഡിയം)",
+          "out": "medium"
+        },
+        {
+          "in": "(കൂടിയത്|ഉയർന്നത്|ഹൈ)",
+          "out": "high"
+        },
+        {
+          "in": "(ഏറ്റവും മുകളിൽ|മേലത്തെ|ടോപ്പ്)",
+          "out": "top"
+        },
+        {
+          "in": "(നടുവ്|നടുവിലത്തെ|മിഡിൽ)",
+          "out": "middle"
+        },
+        {
+          "in": "(ഒരിടത്തേക്ക്|കേന്ദ്രീകരിച്ചത്|ഫോക്കസ്|ഫോക്കസ്ഡ്)",
+          "out": "focus"
+        },
+        {
+          "in": "(വ്യാപിച്ചത്|പ്രചരിച്ചത്|വിതറപ്പെട്ടത്|പരത്തിയത്|പടർത്തിയത്|ഡിഫ്യൂസ്|ഡിഫ്യൂസ്ഡ്)",
+          "out": "diffuse"
+        }
+      ]
+    },
     "cover_classes": {
       "values": [
         {
@@ -588,46 +632,82 @@
         }
       ]
     },
+    "timer_half": {
+      "values": [
+        {
+          "in": "അര",
+          "out": 30
+        },
+        {
+          "in": "1/2",
+          "out": 30
+        }
+      ]
+    },
+    "timer_quarter": {
+      "values": [
+        {
+          "in": "കാൽ",
+          "out": 15
+        },
+        {
+          "in": "1/4",
+          "out": 15
+        }
+      ]
+    },
+    "timer_three_quarters": {
+      "values": [
+        {
+          "in": "മുക്കാൽ",
+          "out": 45
+        },
+        {
+          "in": "3/4",
+          "out": 45
+        }
+      ]
+    },
     "duration_number": {
       "values": [
         {
-          "in": "(ഒന്ന്|ഒരു)",
+          "in": "(ഒന്ന്|ഒരു|ഒറ്റ|ഏക)",
           "out": 1
         },
         {
-          "in": "രണ്ട്",
+          "in": "(രണ്ട്|ഇരട്ട|പെട്ട|ദ്വയ)",
           "out": 2
         },
         {
-          "in": "മൂന്ന്",
+          "in": "(മൂന്ന്|ത്രയ)",
           "out": 3
         },
         {
-          "in": "നാല്",
+          "in": "(നാല്|ചതുർ)",
           "out": 4
         },
         {
-          "in": "അഞ്ച്",
+          "in": "(അഞ്ച്|പഞ്ച)",
           "out": 5
         },
         {
-          "in": "ആറ്",
+          "in": "(ആറ്|ഷഡ്)",
           "out": 6
         },
         {
-          "in": "ഏഴ്",
+          "in": "(ഏഴ്|സപ്ത)",
           "out": 7
         },
         {
-          "in": "എട്ട്",
+          "in": "(എട്ട്|അഷ്ട)",
           "out": 8
         },
         {
-          "in": "(ഒൻപത്|ഒമ്പത്)",
+          "in": "(ഒൻപത്|ഒമ്പത്|നവ)",
           "out": 9
         },
         {
-          "in": "പത്ത്",
+          "in": "(പത്ത്|ദശ)",
           "out": 10
         }
       ]
@@ -647,6 +727,7 @@
   },
   "expansion_rules": {
     "temp": "(താപനില|ചൂടുനില|ചൂട്|തണുപ്പ്)",
+    "fan_mode_term": "(<fan_genitive_singular> (ഓട്ടമുറ|ചലനമുറ|ചലനമട്ട്|ഓട്ടരീതി|ചലനരീതി|ചലനവിധം|ചലനക്രമം)|ഫാൻ മോഡ്)",
     "all": "(എല്ലാ|മുഴുവൻ|സർവ്വ|സകല)",
     "the": "(ഈ|ആ)",
     "that": "(എ(ന്ന്|ന്നത്|ന്നുള്ളത്)|അത്)",
@@ -691,9 +772,12 @@
     "hour_dative": "(മണിക്കൂറിലേക്ക്|മണിക്കൂറുകൾക്ക്)",
     "minute_dative": "(നിമിഷത്തേക്ക്|നിമിഷങ്ങൾക്ക്|മിനിറ്റിലേക്ക്|മിനിറ്റുകൾക്ക്)",
     "second_dative": "(നൊടിയിലേക്ക്|നൊടികൾക്ക്|സെക്കൻഡിലേക്ക്|സെക്കൻഡുകൾക്ക്|സെക്കണ്ടിലേക്ക്|സെക്കണ്ടുകൾക്ക്)",
-    "timer_locative": "(നേരതിട്ടക്കരുവിയിൽ|നേരതിട്ടക്കരുവികളിൽ|കാലതിട്ടക്കരുവിയിൽ|കാലതിട്ടക്കരുവികളിൽ|നേരക്കരുവിയിൽ|നേരക്കരുവികളിൽ|നേരനിർണ്ണയക്കരുവിയിൽ|നേരനിർണ്ണയക്കരുവികളിൽ|സമയനിർണ്ണയക്കരുവിയിൽ|സമയനിർണ്ണയക്കരുവികളിൽ|സമയക്കരുവിയിൽ|സമയക്കരുവികളിൽ|റ്റൈമറിൽ|റ്റൈമറുകളിൽ|ടൈമറിൽ|ടൈമറുകളിൽ)",
-    "timer_genitive_singular": "(നേരതിട്ടക്കരുവിയുടെ|കാലതിട്ടക്കരുവിയുടെ|നേരക്കരുവിയുടെ|നേരനിർണ്ണയക്കരുവിയുടെ|സമയനിർണ്ണയക്കരുവിയുടെ|സമയക്കരുവിയുടെ|റ്റൈമറിന്റെ|ടൈമറിന്റെ)",
-    "timer_dative_singular": "(നേരതിട്ടക്കരുവിക്ക്|നേരതിട്ടക്കരുവിയിലേക്ക്|കാലതിട്ടക്കരുവിക്ക്|കാലതിട്ടക്കരുവിയിലേക്ക്|നേരക്കരുവിക്ക്|നേരക്കരുവിയിലേക്ക്|നേരനിർണ്ണയക്കരുവിക്ക്|നേരനിർണ്ണയക്കരുവിയിലേക്ക്|സമയനിർണ്ണയക്കരുവിക്ക്|സമയനിർണ്ണയക്കരുവിയിലേക്ക്|സമയക്കരുവിക്ക്|സമയക്കരുവിയിലേക്ക്|റ്റൈമറിന്|റ്റൈമറിലേക്ക്|ടൈമറിന്|ടൈമറിലേക്ക്)",
+    "hour_genitive": "(മണിക്കൂറിന്റെ|മണിക്കൂറുകളുടെ)",
+    "minute_genitive": "(നിമിഷത്തിന്റെ|നിമിഷങ്ങളുടെ|മിനിറ്റിന്റെ|മിനിറ്റുകളുടെ)",
+    "second_genitive": "(നൊടിയുടെ|നൊടികളുടെ|സെക്കൻഡിന്റെ|സെക്കൻഡുകളുടെ|സെക്കണ്ടിന്റെ|സെക്കണ്ടുകളുടെ)",
+    "timer_locative": "(നേരതിട്ടക്കരുവിയിൽ|നേരതിട്ടക്കരുവികളിൽ|കാലതിട്ടക്കരുവിയിൽ|കാലതിട്ടക്കരുവികളിൽ|കാലതിട്ടക്കോപ്പിൽ|കാലതിട്ടക്കോപ്പുകളിൽ|നേരക്കരുവിയിൽ|നേരക്കരുവികളിൽ|നേരനിർണ്ണയക്കരുവിയിൽ|നേരനിർണ്ണയക്കരുവികളിൽ|സമയനിർണ്ണയക്കരുവിയിൽ|സമയനിർണ്ണയക്കരുവികളിൽ|സമയക്കരുവിയിൽ|സമയക്കരുവികളിൽ|റ്റൈമറിൽ|റ്റൈമറുകളിൽ|ടൈമറിൽ|ടൈമറുകളിൽ)",
+    "timer_genitive_singular": "(നേരതിട്ടക്കരുവിയുടെ|കാലതിട്ടക്കരുവിയുടെ|കാലതിട്ടക്കോപ്പിന്റെ|നേരക്കരുവിയുടെ|നേരനിർണ്ണയക്കരുവിയുടെ|സമയനിർണ്ണയക്കരുവിയുടെ|സമയക്കരുവിയുടെ|റ്റൈമറിന്റെ|ടൈമറിന്റെ)",
+    "timer_dative_singular": "(നേരതിട്ടക്കരുവിക്ക്|നേരതിട്ടക്കരുവിയിലേക്ക്|കാലതിട്ടക്കരുവിക്ക്|കാലതിട്ടക്കരുവിയിലേക്ക്|കാലതിട്ടക്കോപ്പിന്|കാലതിട്ടക്കോപ്പിലേക്ക്|നേരക്കരുവിക്ക്|നേരക്കരുവിയിലേക്ക്|നേരനിർണ്ണയക്കരുവിക്ക്|നേരനിർണ്ണയക്കരുവിയിലേക്ക്|സമയനിർണ്ണയക്കരുവിക്ക്|സമയനിർണ്ണയക്കരുവിയിലേക്ക്|സമയക്കരുവിക്ക്|സമയക്കരുവിയിലേക്ക്|റ്റൈമറിന്|റ്റൈമറിലേക്ക്|ടൈമറിന്|ടൈമറിലേക്ക്)",
     "duration_attributive": "(ഉള്ള|നീളമുള്ള)",
     "_brightness": "(തെളിച്ചം|വെണ്മ|പ്രകാശം)",
     "light": "(വിള(ക്ക്|ക്കും)|ലാ(മ്പ്|മ്പും)|ലൈ(റ്റ്|റ്റും))",
@@ -713,27 +797,30 @@
     "switches_plural_conjunctive": "സ്വിച്ചുകളും",
     "lockables_plural_conjunctive": "വാതിലുകളും",
     "vacuum_cleaner": "വാക്വം[ ക്ലീനർ]",
-    "lawn_mower": "(പുല്ലുവെട്ടി|പുല്ലുവെട്ടുന്ന വണ്ടി|പുല്ലുവെട്ടിയന്ത്രം|പുല്ലുവെടുന്ന യന്ത്രം)",
+    "lawn_mower": "(പുല്ലുവെട്ടി|പുല്ലുവെട്ടുന്ന വണ്ടി|പുല്ലുവെട്ടിയന്ത്രം|പുല്ലുവെട്ടുന്ന യന്ത്രം)",
     "cleaner_base": "(താവളത്തിലേക്ക്|ചാർജ് ചെയ്യുന്ന ഇടത്തേക്ക്)",
     "cleaning": "(തൂത്തുവാരൽ|അടിച്ചുവാരൽ|പൊടിതുടക്കൽ|വൃത്തിയാക്കൽ|പൊടിനീക്കൽ|പൊടിയൊപ്പൽ)",
     "hour_unit": "(മണിക്കൂർ|മണിക്കൂറുകൾ)",
-    "minute_unit": "(നിമിഷം|നിമിഷങ്ങൾ|മിനിറ്റ്|മിനിറ്റുകൾ)",
+    "minute_unit": "(നിമിഷം|നിമിഷങ്ങൾ|നിമിഷ|മിനിറ്റ്|മിനിറ്റുകൾ)",
     "second_unit": "(നൊടി|നൊടികൾ|സെക്കൻഡ്|സെക്കൻഡുകൾ|സെക്കണ്ട്|സെക്കണ്ടുകൾ)",
-    "timer_singular": "(നേരതിട്ടക്കരുവി|കാലതിട്ടക്കരുവി|നേരക്കരുവി|നേരനിർണ്ണയക്കരുവി|സമയനിർണ്ണയക്കരുവി|സമയക്കരുവി|റ്റൈമർ|ടൈമർ)",
-    "timers_plural": "(നേരതിട്ടക്കരുവികൾ|കാലതിട്ടക്കരുവികൾ|നേരക്കരുവികൾ|നേരനിർണ്ണയക്കരുവികൾ|സമയനിർണ്ണയക്കരുവികൾ|സമയക്കരുവികൾ|റ്റൈമറുകൾ|ടൈമറുകൾ)",
-    "timers_plural_conjunctive": "(നേരതിട്ടക്കരുവികളും|കാലതിട്ടക്കരുവികളും|നേരക്കരുവികളും|നേരനിർണ്ണയക്കരുവികളും|സമയനിർണ്ണയക്കരുവികളും|സമയക്കരുവികളും|റ്റൈമറുകളും|ടൈമറുകളും)",
+    "timer_singular": "(നേരതിട്ടക്കരുവി|കാലതിട്ടക്കരുവി|കാലതിട്ടക്കോപ്പ്|നേരക്കരുവി|നേരനിർണ്ണയക്കരുവി|സമയനിർണ്ണയക്കരുവി|സമയക്കരുവി|റ്റൈമർ|ടൈമർ)",
+    "timers_plural": "(നേരതിട്ടക്കരുവികൾ|കാലതിട്ടക്കരുവികൾ|കാലതിട്ടക്കോപ്പുകൾ|നേരക്കരുവികൾ|നേരനിർണ്ണയക്കരുവികൾ|സമയനിർണ്ണയക്കരുവികൾ|സമയക്കരുവികൾ|റ്റൈമറുകൾ|ടൈമറുകൾ)",
+    "timers_plural_conjunctive": "(നേരതിട്ടക്കരുവികളും|കാലതിട്ടക്കരുവികളും|കാലതിട്ടക്കോപ്പുകളും|നേരക്കരുവികളും|നേരനിർണ്ണയക്കരുവികളും|സമയനിർണ്ണയക്കരുവികളും|സമയക്കരുവികളും|റ്റൈമറുകളും|ടൈമറുകളും)",
     "timer_status": "(നില|സ്ഥിതി|സ്റ്റാറ്റസ്)",
-    "timer_set": "(സെറ്റ് ചെയ്യുക|സെറ്റ് ചെയ്യൂ|വയ്ക്കുക|വയ്ക്കൂ|തുടങ്ങുക|തുടങ്ങൂ)",
+    "timer_set": "(സെറ്റ് ചെയ്യുക|സെറ്റ് ചെയ്യൂ|വയ്ക്കുക|വയ്ക്കൂ|തുടങ്ങുക|തുടങ്ങൂ|ക്രമീകരിക്കുക|ക്രമീകരിക്കൂ|ഒരുക്കുക|ഒരുക്കൂ|സജ്ജീകരിക്കുക|സജ്ജീകരിക്കൂ|സജ്ജമാക്കുക|സജ്ജമാക്കൂ|നിവേശിപ്പിക്കുക|നിവേശിപ്പിക്കൂ|ചട്ടത്തിലാക്കുക|ചട്ടത്തിലാക്കൂ|സ്ഥാപിക്കുക|സ്ഥാപിക്കൂ)",
     "timer_cancel": "(റദ്ദാക്കുക|റദ്ദാക്കൂ|ക്യാൻസൽ ചെയ്യുക|നിർത്തുക|നിർത്തൂ)",
     "duration_hours": "({timer_hours:hours}|{duration_number:hours}) <hour_unit>",
     "duration_hours_combined": "({timer_hours:hours}|{duration_number:hours}) (<hour_unit>|<hour_conjunctive>)",
     "duration_hours_dative": "({timer_hours:hours}|{duration_number:hours}) <hour_dative>",
+    "duration_hours_genitive": "({timer_hours:hours}|{duration_number:hours}) <hour_genitive>",
     "duration_minutes": "({timer_minutes:minutes}|{duration_number:minutes}) <minute_unit>",
     "duration_minutes_combined": "({timer_minutes:minutes}|{duration_number:minutes}) (<minute_unit>|<minute_conjunctive>)",
     "duration_minutes_dative": "({timer_minutes:minutes}|{duration_number:minutes}) <minute_dative>",
+    "duration_minutes_genitive": "({timer_minutes:minutes}|{duration_number:minutes}) <minute_genitive>",
     "duration_seconds": "({timer_seconds:seconds}|{duration_number:seconds}) <second_unit>",
     "duration_seconds_combined": "({timer_seconds:seconds}|{duration_number:seconds}) (<second_unit>|<second_conjunctive>)",
     "duration_seconds_dative": "({timer_seconds:seconds}|{duration_number:seconds}) <second_dative>",
+    "duration_seconds_genitive": "({timer_seconds:seconds}|{duration_number:seconds}) <second_genitive>",
     "timer_start_hours": "({timer_hours:start_hours}|{duration_number:start_hours}) <hour_unit>",
     "timer_start_minutes": "({timer_minutes:start_minutes}|{duration_number:start_minutes}) <minute_unit>",
     "timer_start_seconds": "({timer_seconds:start_seconds}|{duration_number:start_seconds}) <second_unit>",
@@ -827,8 +914,8 @@
         "default": "താപനില {{ slots.temperature }} ഡിഗ്രികൾ ആയി ക്രമീകരിച്ചു"
       },
       "HassStartTimer": {
-        "default": "{% set numbers = {'ഒന്ന്': 1, 'ഒരു': 1, 'രണ്ട്': 2, 'മൂന്ന്': 3, 'നാല്': 4, 'അഞ്ച്': 5, 'ആറ്': 6, 'ഏഴ്': 7, 'എട്ട്': 8, 'ഒൻപത്': 9, 'ഒമ്പത്': 9, 'പത്ത്': 10} %} {% set hours = numbers.get(slots.hours | default(''), slots.hours | default(0)) | int %} {% set minutes = numbers.get(slots.minutes | default(''), slots.minutes | default(0)) | int %} {% set seconds = numbers.get(slots.seconds | default(''), slots.seconds | default(0)) | int %} {% set parts = [] %} {% if hours > 0 %} {% set parts = parts + [hours ~ ' മണിക്കൂർ'] %} {% endif %} {% if minutes > 0 %} {% set parts = parts + [minutes ~ (' നിമിഷം' if minutes == 1 else ' നിമിഷങ്ങൾ')] %} {% endif %} {% if seconds > 0 %} {% set parts = parts + [seconds ~ (' നൊടി' if seconds == 1 else ' നൊടികൾ')] %} {% endif %} {% if slots.name is defined %}{{ slots.name | trim }} എന്ന {% endif %}{{ parts | join(' ') }} ടൈമർ തുടങ്ങി",
-        "command": "{% set numbers = {'ഒന്ന്': 1, 'ഒരു': 1, 'രണ്ട്': 2, 'മൂന്ന്': 3, 'നാല്': 4, 'അഞ്ച്': 5, 'ആറ്': 6, 'ഏഴ്': 7, 'എട്ട്': 8, 'ഒൻപത്': 9, 'ഒമ്പത്': 9, 'പത്ത്': 10} %} {% set hours = numbers.get(slots.hours | default(''), slots.hours | default(0)) | int %} {% set minutes = numbers.get(slots.minutes | default(''), slots.minutes | default(0)) | int %} {% set seconds = numbers.get(slots.seconds | default(''), slots.seconds | default(0)) | int %} {% set parts = [] %} {% if hours > 0 %} {% set parts = parts + [hours ~ ' മണിക്കൂർ'] %} {% endif %} {% if minutes > 0 %} {% set parts = parts + [minutes ~ (' നിമിഷം' if minutes == 1 else ' നിമിഷങ്ങൾ')] %} {% endif %} {% if seconds > 0 %} {% set parts = parts + [seconds ~ (' നൊടി' if seconds == 1 else ' നൊടികൾ')] %} {% endif %} {{ parts | join(' ') }} കഴിഞ്ഞ് ചെയ്യാം"
+        "default": "{% set numbers = {'കാൽ': 15, '1/4': 15, 'അര': 30, '1/2': 30, 'മുക്കാൽ': 45, '3/4': 45, 'ഒന്ന്': 1, 'ഒരു': 1, 'ഒറ്റ': 1, 'ഏക': 1, 'രണ്ട്': 2, 'ഇരട്ട': 2, 'പെട്ട': 2, 'ദ്വയ': 2, 'മൂന്ന്': 3, 'ത്രയ': 3, 'നാല്': 4, 'ചതുർ': 4, 'അഞ്ച്': 5, 'പഞ്ച': 5, 'ആറ്': 6, 'ഷഡ്': 6, 'ഏഴ്': 7, 'സപ്ത': 7, 'എട്ട്': 8, 'അഷ്ട': 8, 'ഒൻപത്': 9, 'ഒമ്പത്': 9, 'നവ': 9, 'പത്ത്': 10, 'ദശ': 10} %} {% set hours = numbers.get(slots.hours | default(''), slots.hours | default(0)) | int %} {% set minutes = numbers.get(slots.minutes | default(''), slots.minutes | default(0)) | int %} {% set seconds = numbers.get(slots.seconds | default(''), slots.seconds | default(0)) | int %} {% set parts = [] %} {% if hours > 0 %} {% set parts = parts + [hours ~ ' മണിക്കൂർ'] %} {% endif %} {% if minutes > 0 %} {% set parts = parts + [minutes ~ (' നിമിഷം' if minutes == 1 else ' നിമിഷങ്ങൾ')] %} {% endif %} {% if seconds > 0 %} {% set parts = parts + [seconds ~ (' നൊടി' if seconds == 1 else ' നൊടികൾ')] %} {% endif %} {% if (hours > 0) and (minutes == 0) and (seconds == 0) %} {% set duration = hours ~ (' മണിക്കൂറിന്റെ' if hours == 1 else ' മണിക്കൂറുകളുടെ') %} {% elif (hours == 0) and (minutes > 0) and (seconds == 0) %} {% set duration = minutes ~ (' നിമിഷത്തിന്റെ' if minutes == 1 else ' നിമിഷങ്ങളുടെ') %} {% elif (hours == 0) and (minutes == 0) and (seconds > 0) %} {% set duration = seconds ~ (' നൊടിയുടെ' if seconds == 1 else ' നൊടികളുടെ') %} {% else %} {% set duration = parts | join(' ') %} {% endif %} {% if slots.name is defined %}{{ slots.name | trim }} എന്ന {% endif %}{{ duration }} ടൈമർ തുടങ്ങി",
+        "command": "{% set numbers = {'കാൽ': 15, '1/4': 15, 'അര': 30, '1/2': 30, 'മുക്കാൽ': 45, '3/4': 45, 'ഒന്ന്': 1, 'ഒരു': 1, 'ഒറ്റ': 1, 'ഏക': 1, 'രണ്ട്': 2, 'ഇരട്ട': 2, 'പെട്ട': 2, 'ദ്വയ': 2, 'മൂന്ന്': 3, 'ത്രയ': 3, 'നാല്': 4, 'ചതുർ': 4, 'അഞ്ച്': 5, 'പഞ്ച': 5, 'ആറ്': 6, 'ഷഡ്': 6, 'ഏഴ്': 7, 'സപ്ത': 7, 'എട്ട്': 8, 'അഷ്ട': 8, 'ഒൻപത്': 9, 'ഒമ്പത്': 9, 'നവ': 9, 'പത്ത്': 10, 'ദശ': 10} %} {% set hours = numbers.get(slots.hours | default(''), slots.hours | default(0)) | int %} {% set minutes = numbers.get(slots.minutes | default(''), slots.minutes | default(0)) | int %} {% set seconds = numbers.get(slots.seconds | default(''), slots.seconds | default(0)) | int %} {% set parts = [] %} {% if hours > 0 %} {% set parts = parts + [hours ~ ' മണിക്കൂർ'] %} {% endif %} {% if minutes > 0 %} {% set parts = parts + [minutes ~ (' നിമിഷം' if minutes == 1 else ' നിമിഷങ്ങൾ')] %} {% endif %} {% if seconds > 0 %} {% set parts = parts + [seconds ~ (' നൊടി' if seconds == 1 else ' നൊടികൾ')] %} {% endif %} {{ parts | join(' ') }} കഴിഞ്ഞ് ചെയ്യാം"
       },
       "HassShoppingListAddItem": {
         "item_added": "{{ slots.item }} ചേർത്തു"
@@ -846,6 +933,9 @@
       },
       "HassMediaPause": {
         "default": "നിർത്തി"
+      },
+      "HassClimateSetFanMode": {
+        "default": "വിശറിയുടെ ഓട്ടമുറ മാറ്റി"
       },
       "HassGetCurrentTime": {
         "default": "{% set minute_str = '{0:02d}'.format(slots.time.minute) %} {{ slots.time.hour }}:{{ minute_str }}\n"
