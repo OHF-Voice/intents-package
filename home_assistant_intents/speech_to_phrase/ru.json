@@ -1,0 +1,1304 @@
+{
+  "language": "ru",
+  "intents": {
+    "HassCancelAllTimers": {
+      "data": [
+        {
+          "sentences": [
+            "выключи все таймеры",
+            "останови все таймеры"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassCancelTimer": {
+      "data": [
+        {
+          "sentences": [
+            "выключи таймер (в|во|на) {area}"
+          ],
+          "metadata": {
+            "slot_combination": "area_only"
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "выключи таймер",
+            "останови таймер"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassClimateGetTemperature": {
+      "data": [
+        {
+          "sentences": [
+            "какая температура установлена на {name}",
+            "сколько сейчас градусов на {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "climate"
+            ]
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassGetCurrentDate": {
+      "data": [
+        {
+          "sentences": [
+            "какое сегодня число"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassGetCurrentTime": {
+      "data": [
+        {
+          "sentences": [
+            "который час",
+            "сколько времени"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassGetState": {
+      "data": [
+        {
+          "sentences": [
+            "какое состояние у {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "sensor",
+              "light",
+              "switch",
+              "fan",
+              "cover",
+              "lock",
+              "valve",
+              "climate",
+              "media_player"
+            ]
+          },
+          "response": "one"
+        }
+      ]
+    },
+    "HassGetWeather": {
+      "data": [
+        {
+          "sentences": [
+            "погода",
+            "какая сейчас погода"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "Какая погода в {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "weather"
+            ]
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassLightSet": {
+      "data": [
+        {
+          "sentences": [
+            "установи яркость в {area} на {brightness} процентов",
+            "установи яркость {area} на {brightness} процентов"
+          ],
+          "metadata": {
+            "slot_combination": "area_brightness"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "response": "brightness"
+        },
+        {
+          "sentences": [
+            "установи цвет в {area} на {color}",
+            "установи цвет света в {area} на {color}"
+          ],
+          "metadata": {
+            "slot_combination": "area_color"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "response": "color"
+        },
+        {
+          "sentences": [
+            "установи яркость на {brightness} процентов"
+          ],
+          "metadata": {
+            "slot_combination": "brightness_only"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "brightness"
+        },
+        {
+          "sentences": [
+            "установи цвет света на {color}"
+          ],
+          "metadata": {
+            "slot_combination": "color_only"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "color"
+        },
+        {
+          "sentences": [
+            "поставь яркость света {name} до {brightness}",
+            "сделай яркость {name} на {brightness}"
+          ],
+          "metadata": {
+            "slot_combination": "name_brightness"
+          },
+          "requires_context": {
+            "domain": [
+              "light"
+            ]
+          },
+          "response": "brightness"
+        },
+        {
+          "sentences": [
+            "поставь {color} цвет у {name}",
+            "сделай {color} цвет {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_color"
+          },
+          "requires_context": {
+            "domain": [
+              "light"
+            ]
+          },
+          "response": "color"
+        }
+      ]
+    },
+    "HassMediaNext": {
+      "data": [
+        {
+          "sentences": [
+            "следующая песня",
+            "следующий трек"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "включи следующую песню на {name}",
+            "включи следующий трек на {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "media_player"
+            ]
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassMediaPause": {
+      "data": [
+        {
+          "sentences": [
+            "приостанови {name}",
+            "{name} на паузу"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "media_player"
+            ]
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassMediaPrevious": {
+      "data": [
+        {
+          "sentences": [
+            "включи предыдущую песню на {name}",
+            "включи предыдущий трек на {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "media_player"
+            ]
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassMediaUnpause": {
+      "data": [
+        {
+          "sentences": [
+            "продолжи воспроизведение на {name}",
+            "сними с паузы {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "media_player"
+            ]
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassNevermind": {
+      "data": [
+        {
+          "sentences": [
+            "Отмена",
+            "Забудь"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassPauseTimer": {
+      "data": [
+        {
+          "sentences": [
+            "останови таймер"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassStartTimer": {
+      "data": [
+        {
+          "sentences": [
+            "установи таймер на {timer_hours:hours} часов и {timer_minutes:minutes} минут",
+            "таймер на {timer_hours:hours} часов и {timer_minutes:minutes} минут"
+          ],
+          "metadata": {
+            "slot_combination": "hours_minutes"
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "установи таймер на {timer_hours:hours} часов",
+            "таймер на {timer_hours:hours} часов"
+          ],
+          "metadata": {
+            "slot_combination": "hours_only"
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "установи таймер на {timer_minutes:minutes} минут",
+            "таймер на {timer_minutes:minutes} минут"
+          ],
+          "metadata": {
+            "slot_combination": "minutes_only"
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "установи таймер на {timer_minutes:minutes} минут и {timer_seconds:seconds} секунд",
+            "таймер на {timer_minutes:minutes} минут и {timer_seconds:seconds} секунд"
+          ],
+          "metadata": {
+            "slot_combination": "minutes_seconds"
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "установи таймер на {timer_seconds:seconds} секунд",
+            "таймер на {timer_seconds:seconds} секунд"
+          ],
+          "metadata": {
+            "slot_combination": "seconds_only"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassTimerStatus": {
+      "data": [
+        {
+          "sentences": [
+            "какое состояние у таймеров",
+            "сколько осталось на таймерах"
+          ],
+          "metadata": {
+            "slot_combination": "default"
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassTurnOff": {
+      "data": [
+        {
+          "sentences": [
+            "выключи свет в {area}",
+            "выключи свет во {area}",
+            "выключи свет на {area}"
+          ],
+          "metadata": {
+            "slot_combination": "area_domain"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "response": "lights_area"
+        },
+        {
+          "sentences": [
+            "выключи здесь свет",
+            "выключи свет"
+          ],
+          "metadata": {
+            "slot_combination": "domain_only"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "lights_area"
+        },
+        {
+          "sentences": [
+            "закрой {name} в {area}"
+          ],
+          "metadata": {
+            "slot_combination": "name_area"
+          },
+          "requires_context": {
+            "domain": [
+              "cover"
+            ]
+          },
+          "response": "cover_area"
+        },
+        {
+          "sentences": [
+            "закрой {name} в {area}"
+          ],
+          "metadata": {
+            "slot_combination": "name_area"
+          },
+          "requires_context": {
+            "domain": [
+              "valve"
+            ]
+          },
+          "response": "valve"
+        },
+        {
+          "sentences": [
+            "выключи {name}",
+            "отключи {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "light",
+              "switch",
+              "fan",
+              "media_player",
+              "input_boolean",
+              "climate"
+            ]
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "закрой {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "cover"
+            ]
+          },
+          "response": "cover"
+        },
+        {
+          "sentences": [
+            "закрой {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "valve"
+            ]
+          },
+          "response": "valve"
+        }
+      ]
+    },
+    "HassTurnOn": {
+      "data": [
+        {
+          "sentences": [
+            "включи свет в {area}",
+            "включи свет во {area}",
+            "включи свет на {area}"
+          ],
+          "metadata": {
+            "slot_combination": "area_domain"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "response": "lights_area"
+        },
+        {
+          "sentences": [
+            "включи здесь свет",
+            "включи свет"
+          ],
+          "metadata": {
+            "slot_combination": "domain_only"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "lights_area"
+        },
+        {
+          "sentences": [
+            "открой {name} в {area}"
+          ],
+          "metadata": {
+            "slot_combination": "name_area"
+          },
+          "requires_context": {
+            "domain": [
+              "cover"
+            ]
+          },
+          "response": "cover_area"
+        },
+        {
+          "sentences": [
+            "открой {name} в {area}"
+          ],
+          "metadata": {
+            "slot_combination": "name_area"
+          },
+          "requires_context": {
+            "domain": [
+              "valve"
+            ]
+          },
+          "response": "valve"
+        },
+        {
+          "sentences": [
+            "включи {name}",
+            "запусти {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "light",
+              "switch",
+              "fan",
+              "media_player",
+              "input_boolean",
+              "climate"
+            ]
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "открой {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "cover"
+            ]
+          },
+          "response": "cover"
+        },
+        {
+          "sentences": [
+            "открой {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "valve"
+            ]
+          },
+          "response": "valve"
+        },
+        {
+          "sentences": [
+            "активируй {name}",
+            "включи {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_scene"
+          },
+          "requires_context": {
+            "domain": [
+              "scene"
+            ]
+          },
+          "response": "scene"
+        },
+        {
+          "sentences": [
+            "включи {name}",
+            "запусти {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_script"
+          },
+          "requires_context": {
+            "domain": [
+              "script"
+            ]
+          },
+          "response": "script"
+        }
+      ]
+    },
+    "HassVacuumStart": {
+      "data": [
+        {
+          "sentences": [
+            "запусти {name}",
+            "включи {name}"
+          ],
+          "metadata": {
+            "slot_combination": "name_only"
+          },
+          "requires_context": {
+            "domain": [
+              "vacuum"
+            ]
+          },
+          "response": "by_name"
+        }
+      ]
+    }
+  },
+  "lists": {
+    "message": {
+      "wildcard": true
+    },
+    "temperature": {
+      "range": {
+        "type": "temperature",
+        "from": 0,
+        "to": 100
+      }
+    },
+    "position": {
+      "range": {
+        "type": "percentage",
+        "from": 0,
+        "to": 100
+      }
+    },
+    "fan_speed": {
+      "range": {
+        "type": "percentage",
+        "from": 0,
+        "to": 100
+      }
+    },
+    "brightness": {
+      "range": {
+        "type": "percentage",
+        "from": 0,
+        "to": 100
+      }
+    },
+    "color_temperature": {
+      "range": {
+        "from": 1000,
+        "to": 10000,
+        "step": 100
+      }
+    },
+    "search_query": {
+      "wildcard": true
+    },
+    "volume": {
+      "range": {
+        "type": "percentage",
+        "from": 0,
+        "to": 100
+      }
+    },
+    "volume_step_up": {
+      "range": {
+        "type": "percentage",
+        "from": 0,
+        "to": 100
+      }
+    },
+    "volume_step_down": {
+      "range": {
+        "type": "percentage",
+        "from": 0,
+        "to": 100,
+        "multiplier": -1
+      }
+    },
+    "zone": {
+      "wildcard": true
+    },
+    "timer_seconds": {
+      "range": {
+        "from": 1,
+        "to": 100
+      }
+    },
+    "timer_minutes": {
+      "range": {
+        "from": 1,
+        "to": 100
+      }
+    },
+    "timer_hours": {
+      "range": {
+        "from": 1,
+        "to": 100
+      }
+    },
+    "timer_name": {
+      "wildcard": true
+    },
+    "timer_command": {
+      "wildcard": true
+    },
+    "shopping_list_item": {
+      "wildcard": true
+    },
+    "todo_list_item": {
+      "wildcard": true
+    },
+    "bs_open_states": {
+      "values": [
+        {
+          "in": "открыт[о|а|ы|ая|ое|ый|ые|ых]",
+          "out": "on"
+        },
+        {
+          "in": "закрыт[о|а|ы|ая|ое|ый|ые|ых]",
+          "out": "off"
+        }
+      ]
+    },
+    "bs_occupancy_states": {
+      "values": [
+        {
+          "in": "(занят[а|о|ы]|[кто][-(то|либо)] есть [кто][-(то|либо)]|есть присутствие|(движение;(есть|обнаружено)))",
+          "out": "on"
+        },
+        {
+          "in": "(пуст[о]|никого [нет]|свобод(но|ен|нв|ный|ная|ное)|нет (кого[-то|-либо]|присутствия))",
+          "out": "off"
+        }
+      ]
+    },
+    "fan_mode": {
+      "values": [
+        {
+          "in": "авто[матический]",
+          "out": "auto"
+        },
+        {
+          "in": "вкл[ючен[ный]]",
+          "out": "on"
+        },
+        {
+          "in": "выкл[ючен[ный]]",
+          "out": "off"
+        },
+        {
+          "in": "(низкий|минимальный|минимум)",
+          "out": "low"
+        },
+        {
+          "in": "средний",
+          "out": "medium"
+        },
+        {
+          "in": "(высокий|максимальный|максимум)",
+          "out": "high"
+        },
+        {
+          "in": "(верхний|наверх)",
+          "out": "top"
+        },
+        {
+          "in": "(центральный|средний)",
+          "out": "middle"
+        },
+        {
+          "in": "(направленный|фокус)",
+          "out": "focus"
+        },
+        {
+          "in": "рассеянный",
+          "out": "diffuse"
+        }
+      ]
+    },
+    "cover_states": {
+      "values": [
+        {
+          "in": "открыт[а|о|ы|ой|ая|ые|ую|ый|ое|ых]|не[ ]зад(е|ё)рнут[а|о|ы|ой|ая|ые|ую|ый|ое|ых]|поднят[а|о|ы|ой|ая|ые|ую|ый|ое|ых]",
+          "out": "open"
+        },
+        {
+          "in": "закрыт[а|о|ы|ой|ая|ые|ую|ый|ое|ых]|зад(е|ё)рнут[а|о|ы|ой|ая|ые|ую|ый|ое|ых]|опущен[а|о|ы|ной|ная|ные|ную|ный|ное|ных]",
+          "out": "closed"
+        },
+        {
+          "in": "открыва(е|ю)тся|поднима(е|ю)тся",
+          "out": "opening"
+        },
+        {
+          "in": "закрыва(е|ю)тся|опуска(е|ю)тся",
+          "out": "closing"
+        }
+      ]
+    },
+    "cover_classes": {
+      "values": [
+        {
+          "in": "навес[ы|ов]|козыр(ек|ёк|ьков|ьки)|маркиз[а|ы]",
+          "out": "awning"
+        },
+        {
+          "in": "жалюз[и|ей]",
+          "out": "blind"
+        },
+        {
+          "in": "штор[а|у|ы|ок]|шторк(а|у|и)|занавеск(у|а|и|ок)",
+          "out": "curtain"
+        },
+        {
+          "in": "[приточн(ый|ые|ых) ]клапан[ы|и|ов]|заслонк(у|а|и|ок)",
+          "out": "damper"
+        },
+        {
+          "in": "двер(ь|и|ей)|калитк(а|и|ок)",
+          "out": "door"
+        },
+        {
+          "in": "гаражн(ую|ые|ых) (двер(ь|и|ей)|ворот[а])|(двер(ь|и)|ворота) гаража",
+          "out": "garage"
+        },
+        {
+          "in": "ворот[а]",
+          "out": "gate"
+        },
+        {
+          "in": "рулонн(ая|ую|ые|ых) штор[у|а|ы]",
+          "out": "shade"
+        },
+        {
+          "in": "ставн(и|ей)",
+          "out": "shutter"
+        },
+        {
+          "in": "окн(о|а)|окон",
+          "out": "window"
+        }
+      ]
+    },
+    "color_temperature_names": {
+      "values": [
+        {
+          "in": "(свет свечи|свеча|свечу|свечи)",
+          "out": 1900
+        },
+        {
+          "in": "(тёплый|теплый)[ белый]",
+          "out": 2700
+        },
+        {
+          "in": "(холодный|прохладный)[ белый]",
+          "out": 4000
+        },
+        {
+          "in": "дневной свет",
+          "out": 6500
+        }
+      ]
+    },
+    "color": {
+      "values": [
+        {
+          "in": "белый|белого|белым|белой",
+          "out": "white"
+        },
+        {
+          "in": "розовый|розового|розовым|розовой",
+          "out": "crimson"
+        },
+        {
+          "in": "красный|красного|красным|красной",
+          "out": "red"
+        },
+        {
+          "in": "оранжевый|оранжевого|оранжевым|оранжевой",
+          "out": "orange"
+        },
+        {
+          "in": "желтый|желтого|желтым|желтой|жёлтый|жёлтого|жёлтым|жёлтой",
+          "out": "goldenrod"
+        },
+        {
+          "in": "зеленый|зеленого|зеленым|зелёной|зелёный|зелёного|зелёным|зелёной",
+          "out": "green"
+        },
+        {
+          "in": "голубой|голубого|голубым",
+          "out": "skyblue"
+        },
+        {
+          "in": "синий|синего|синим|синей",
+          "out": "blue"
+        },
+        {
+          "in": "фиолетовый|фиолетового|фиолетовым|фиолетовой",
+          "out": "purple"
+        }
+      ]
+    },
+    "media_class": {
+      "values": [
+        {
+          "in": "(исполнителя|артиста|группу)",
+          "out": "artist"
+        },
+        {
+          "in": "альбом",
+          "out": "album"
+        },
+        {
+          "in": "(песню|трек|композицию)",
+          "out": "track"
+        },
+        {
+          "in": "плейлист",
+          "out": "playlist"
+        },
+        {
+          "in": "подкаст",
+          "out": "podcast"
+        },
+        {
+          "in": "фильм",
+          "out": "movie"
+        },
+        {
+          "in": "(сериал|передачу|шоу)",
+          "out": "tv_show"
+        },
+        {
+          "in": "музыку",
+          "out": "music"
+        }
+      ]
+    },
+    "volume_step": {
+      "values": [
+        {
+          "in": "(прибавь|увеличь|повысь|подними)",
+          "out": "up"
+        },
+        {
+          "in": "(убавь|уменьши|понизь|опусти)",
+          "out": "down"
+        }
+      ]
+    },
+    "volume_comparative": {
+      "values": [
+        {
+          "in": "[по]громче",
+          "out": "up"
+        },
+        {
+          "in": "[по]тише",
+          "out": "down"
+        }
+      ]
+    },
+    "on_off_states": {
+      "values": [
+        {
+          "in": "(включ(е|ё)н[а|о|ы|ная|ное|ный|ные|ных|ного])",
+          "out": "on"
+        },
+        {
+          "in": "(выключен[а|о|ы|ная|ное|ный|ные|ных|ного])",
+          "out": "off"
+        }
+      ]
+    },
+    "lock_states": {
+      "values": [
+        {
+          "in": "заперт[а|о|ы|ый|ая|ое|ые|ых]|заблокирован[а|о|ы|ный|ная|ное|ные|ных]|[закрыт[а|о|ы|ый|ая|ое|ые|ых] ]на замок",
+          "out": "locked"
+        },
+        {
+          "in": "отперт[а|о|ы|ый|ая|ое|ые|ых]|разблокирован[а|о|ы|ный|ная|ное|ные|ных]|не[ ]заперт[а|о|ы|ый|ая|ое|ые|ых]|не[ ]заблокирован[а|о|ы|ный|ная|ное|ные|ных]",
+          "out": "unlocked"
+        }
+      ]
+    }
+  },
+  "expansion_rules": {
+    "temp": "(температур(а|у)|градус[ов|а])",
+    "ac": "(кондиционер|сплит)",
+    "ac_of": "(кондиционера|сплита)",
+    "here": "((тут|здесь)|[в|на] [этой|этом|эту] (комнат(е|у)|зон(е|у)|помещении|месте))",
+    "turn_on": "(включи|запусти)[ть]",
+    "turn_off": "(выключи|отключи|останови)[ть]",
+    "in": "(в|во|на)",
+    "how_is": "как(ое|ово|ая|ой) [статус|состояние]",
+    "are_any": "есть [как(ой|ая|ое|ие)-(нибудь|либо)]",
+    "are_all": "(все|всё|весь)",
+    "which": "(какие|какой|какая|какое|которые|который|которая|которое)",
+    "how_many": "сколько",
+    "anyone": "(кто|кого)[-(то|либо)]",
+    "light": "(свет[а|у]|светильник[и|а|у|ам]|ламп[а|е|ы|ам])",
+    "play": "(включи|поставь|сыграй|воспроизведи|проиграй)",
+    "volume": "(громкость|звук)",
+    "percent": "([ ]%| процент[а|ов])",
+    "timer_cancel": "(отмени|останови|выключи|отключи|удали)[ть]",
+    "timer_decrease": "(уменьши|убери|отними)",
+    "timer_increase": "(увеличь|добавь|прибавь|накинь)",
+    "set": "(сдела(й|ть)|установи[ть]|постав(ь|ить)|поменя(й|ть)|измени[ть]|выстав(ь|ить)|переключи[ть]|переве(сти|ди)|увелич(ь|ить)|уменьш(и|ить)|подн(ими|ять)|опусти[ть]|прибав(ь|ить)|отн(ими|ять)|повыс(ь|ить)|пониз(ь|ить))",
+    "close": "(закр(ой|ыть)|прикр(ой|ыть)|опусти[ть])",
+    "open": "(раскр(ой|ыть)|откр(ой|ыть)|подн(ими|ять))",
+    "clean": "(прибери[сь]|[про]пылесось|убери[сь]|помой[ полы])",
+    "numeric_value_set": "(сдела(й|ть)|установи[ть]|постав(ь|ить)|поменя(й|ть)|измени[ть]|выстав(ь|ить))",
+    "numeric_value_increase": "(увелич(ь|ить)|подн(ими|ять)|прибав(ь|ить)|повыс(ь|ить))",
+    "numeric_value_decrease": "(уменьш(и|ить)|опусти[ть]|отн(ими|ять)|пониз(ь|ить))"
+  },
+  "skip_words": [
+    "пожалуйста",
+    "можешь",
+    "ска(жи|зать)",
+    "прошу",
+    "узна(й|ть)",
+    "ли"
+  ],
+  "responses": {
+    "errors": {
+      "no_intent": "Обращение не распознано",
+      "handle_error": "Во время обработки действия произошла ошибка",
+      "no_area": "Нет зоны {{ area }}",
+      "no_floor": "Нет этажа {{ floor }}",
+      "no_domain": "{% set translations = {\n  \"button\": \"кнопка\",\n  \"camera\": \"камера\",\n  \"input_button\": \"кнопка\",\n  \"alarm_control_panel\": \"охрана\",\n  \"automation\": \"автоматизация\",\n  \"fan\": \"вентилятор\",\n  \"climate\": \"термостат\",\n  \"humidifier\": \"увлажнитель\",\n  \"input_boolean\": \"переключатель\",\n  \"siren\": \"сирена\",\n  \"water_heater\": \"бойлер\",\n  \"light\": \"лампа\",\n  \"switch\": \"переключатель\",\n  \"script\": \"скрипт\",\n  \"remote\": \"ИК пульт\",\n  \"lock\": \"замок\",\n  \"vacuum\": \"пылесос\",\n  \"scene\": \"сцена\",\n  \"media_player\": \"плеер\",\n  \"lawn_mower\": \"газонокосилка\",\n  \"valve\": \"кран\"\n  } %}\n{% if domain in translations -%}\n  Нет объектов типа {{ translations[domain] }}\n{%- else -%}\n  Нет объектов запрашиваемого типа\n{%- endif %}\n",
+      "no_domain_in_area": "{% set translations = {\n  \"button\": \"кнопка\",\n  \"camera\": \"камера\",\n  \"input_button\": \"кнопка\",\n  \"alarm_control_panel\": \"охрана\",\n  \"automation\": \"автоматизация\",\n  \"fan\": \"вентилятор\",\n  \"climate\": \"термостат\",\n  \"humidifier\": \"увлажнитель\",\n  \"input_boolean\": \"переключатель\",\n  \"siren\": \"сирена\",\n  \"water_heater\": \"бойлер\",\n  \"light\": \"лампа\",\n  \"switch\": \"переключатель\",\n  \"script\": \"скрипт\",\n  \"remote\": \"ИК пульт\",\n  \"lock\": \"замок\",\n  \"vacuum\": \"пылесос\",\n  \"scene\": \"сцена\",\n  \"media_player\": \"плеер\",\n  \"lawn_mower\": \"газонокосилка\",\n  \"valve\": \"кран\"\n  } %}\n{% if domain in translations -%}\n  Нет объектов типа {{ translations[domain] }} в {{ area }}\n{%- else -%}\n  Нет объектов запрашиваемого типа в {{ area }}\n{%- endif %}\n",
+      "no_domain_in_floor": "{% set translations = {\n  \"button\": \"кнопка\",\n  \"camera\": \"камера\",\n  \"input_button\": \"кнопка\",\n  \"alarm_control_panel\": \"охрана\",\n  \"automation\": \"автоматизация\",\n  \"fan\": \"вентилятор\",\n  \"climate\": \"термостат\",\n  \"humidifier\": \"увлажнитель\",\n  \"input_boolean\": \"переключатель\",\n  \"siren\": \"сирена\",\n  \"water_heater\": \"бойлер\",\n  \"light\": \"лампа\",\n  \"switch\": \"переключатель\",\n  \"script\": \"скрипт\",\n  \"remote\": \"ИК пульт\",\n  \"lock\": \"замок\",\n  \"vacuum\": \"пылесос\",\n  \"scene\": \"сцена\",\n  \"media_player\": \"плеер\",\n  \"lawn_mower\": \"газонокосилка\",\n  \"valve\": \"кран\"\n  } %}\n{% if domain in translations -%}\n  Нет объектов типа {{ translations[domain] }} на этаже\n{%- else -%}\n  Нет объектов запрашиваемого типа на этаже\n{%- endif %}\n",
+      "no_device_class": "{% set translations = {\n  \"awning\": \"навесы\",\n  \"blind\": \"жалюзи\",\n  \"curtain\": \"шторы\",\n  \"door\": \"двери\",\n  \"garage\": \"гаражные ворота\",\n  \"gate\": \"ворота\",\n  \"shade\": \"рулонные шторы\",\n  \"shutter\": \"ставни\",\n  \"window\": \"окна\"\n  } %}\n{% if device_class in translations -%}\n  {{ translations[device_class] }} отсутствуют\n{%- else -%}\n  Отсутствуют объекты класса {{ device_class }}\n{%- endif %}\n",
+      "no_device_class_in_area": "{% set translations = {\n  \"awning\": \"навесы\",\n  \"blind\": \"жалюзи\",\n  \"curtain\": \"шторы\",\n  \"door\": \"двери\",\n  \"garage\": \"гаражные ворота\",\n  \"gate\": \"ворота\",\n  \"shade\": \"рулонные шторы\",\n  \"shutter\": \"ставни\",\n  \"window\": \"окна\"\n  } %}\n{% if device_class in translations -%}\n  Отсутствуют {{ translations[device_class] }} в {{ area }}\n{%- else -%}\n  Отсутствуют объекты класса {{ device_class }} в {{ area }}\n{%- endif %}\n",
+      "no_device_class_in_floor": "{% set translations = {\n  \"awning\": \"навесы\",\n  \"blind\": \"жалюзи\",\n  \"curtain\": \"шторы\",\n  \"door\": \"двери\",\n  \"garage\": \"гаражные ворота\",\n  \"gate\": \"ворота\",\n  \"shade\": \"рулонные шторы\",\n  \"shutter\": \"ставни\",\n  \"window\": \"окна\"\n  } %}\n{% if device_class in translations -%}\n  Отсутствуют {{ translations[device_class] }} на этаже\n{%- else -%}\n  Отсутствуют объекты класса {{ device_class }} на этаже\n{%- endif %}\n",
+      "no_entity": "Отсутствует объект {{ entity }}",
+      "no_entity_in_area": "Отсутствует объект {{ entity }} в {{ area }}",
+      "no_entity_in_floor": "Отсутствует объект {{ entity }} на этаже",
+      "entity_wrong_state": "Нет объектов со статусом {{ state | lower }}",
+      "feature_not_supported": "Функция не поддерживается объектом",
+      "no_entity_exposed": "Доступ к объекту {{ entity }} не предоставлен",
+      "no_entity_in_area_exposed": "Доступ к объекту {{ entity }} в {{ area }} не предоставлен",
+      "no_entity_in_floor_exposed": "Доступ к объекту {{ entity }} на этаже не предоставлен",
+      "no_domain_exposed": "Доступ к {{ domain }} не предоставлен",
+      "no_domain_in_area_exposed": "Доступ к {{ domain }} в {{ area }} не предоставлен",
+      "no_domain_in_floor_exposed": "Доступ к {{ domain }} на этаже не предоставлен",
+      "no_device_class_exposed": "Доступ к {{ device_class }} не предоставлен",
+      "no_device_class_in_area_exposed": "Доступ к {{ device_class }} в {{ area }} не предоставлен",
+      "no_device_class_in_floor_exposed": "Доступ к {{ device_class }} на этаже не предоставлен",
+      "duplicate_entities": "Дублирование названий. Несколько объектов {{ entity }}",
+      "duplicate_entities_in_area": "Дублирование названий. Несколько объектов {{ entity }} в {{ area }}",
+      "duplicate_entities_in_floor": "Дублирование названий. Несколько объектов {{ entity }} на этаже",
+      "timer_not_found": "Таймер не найден",
+      "multiple_timers_matched": "Ошибка обращения к совпадающим таймерам",
+      "no_timer_support": "Таймеры не поддерживаются на данном устройстве",
+      "duplicate_targets": "Запросу соответствует несколько объектов"
+    },
+    "intents": {
+      "HassGetState": {
+        "one": "{% if state.state_with_unit == 'open': %}\n   Открыто\n{% elif state.state_with_unit == 'closed': %}\n   Закрыто\n{% elif state.state_with_unit == 'on': %}\n   Включено\n{% elif state.state_with_unit == 'off': %}\n   Выключено\n{% else %}\n   {{ slots.name | capitalize }} {{ state.state_with_unit }}\n{% endif %}\n",
+        "one_yesno": "{% if query.matched %}\n  Да\n{% else %}\n  {% set device_class = state.attributes.get('device_class', '') %}\n  Нет, {% if state.domain == 'lock' %}\n    {{ 'заперто' if state.state == 'locked' else 'не заперто' }}\n  {% elif state.domain == 'cover' %}\n    {{ 'открыто' if state.state == 'open' else 'закрыто' }}\n  {% elif state.domain == 'valve' %}\n    {{ 'открыто' if state.state == 'open' else 'закрыто' }}\n  {% elif state.domain == 'binary_sensor' and device_class in ('door', 'garage_door', 'window', 'opening') %}\n    {{ 'открыто' if state.state == 'on' else 'закрыто' }}\n  {% elif state.domain == 'binary_sensor' and device_class == 'occupancy' %}\n    {{ 'занято' if state.state == 'on' else 'свободно' }}\n  {% else %}\n    {{ 'включено' if state.state == 'on' or state.state == 'open' else 'выключено' }}\n  {% endif %}\n{% endif %}\n",
+        "any": "{% if query.matched %}\n  {% set match = query.matched | map(attribute=\"name\") | sort | list %}\n  {% if match | length > 4 %}\n    Да, {{ match[:3] | join(\", \") }} и ещё {{ (match | length - 3) }}\n  {%- else -%}\n    Да,\n    {% for name in match -%}\n      {% if not loop.first and not loop.last %}, {% elif loop.last and not loop.first %} и {% endif -%}\n      {{ name }}\n    {%- endfor -%}\n  {% endif %}\n{% else %}\n  Нет\n{% endif %}\n",
+        "all": "{% if not query.unmatched: %}\n  Да\n{% else %}\n  {% set no_match = query.unmatched | map(attribute=\"name\") | sort | list %}\n  {% if no_match | length > 4 %}\n    {{ no_match[:3] | join(\", \") }} и ещё {{ (no_match | length - 3) }} — нет\n  {%- else -%}\n    {% for name in no_match -%}\n      {% if not loop.first and not loop.last %}, {% elif loop.last and not loop.first %} и {% endif -%}\n      {{ name }} — нет\n    {%- endfor %}\n  {% endif %}\n{% endif %}\n",
+        "which": "{% if not query.matched %}\n  Никакие\n{% else: %}\n  {% set match = query.matched | map(attribute=\"name\") | sort | list %}\n  {% if match | length > 4 %}\n    {{ match[:3] | join(\", \") }} и ещё {{ (match | length - 3) }}\n  {% else %}\n    {%- for name in match -%}\n      {% if not loop.first and not loop.last %}, {% elif loop.last and not loop.first %} и {% endif -%}\n      {{ name }}\n    {%- endfor -%}\n  {% endif %}\n{% endif %}\n",
+        "how_many": "{{ query.matched | length }}\n"
+      },
+      "HassTurnOff": {
+        "default": "{% set female_ending = \"а\" %}\n{% set neuter_ending = \"о\" %}\n{% set male_ending = \"\" %}\n{% set plural_ending = \"ы\" %}\n{% if slots.name[-1].lower() in \"ь\" %}\n  {% if ((slots.name.lower().split() + [\"выключатель\",\"пользователь\",\"день\",\"дождь\"])\n        | count != dict.fromkeys(slots.name.lower().split() + [\"выключатель\",\"пользователь\",\"день\",\"дождь\"]) | count)  or\n        (slots.name[-2].lower() in \"рь\" and slots.name.lower() != \"дверь\") %}\n    {% set ending = male_ending %}\n  {% else %}\n    {% set ending = female_ending %}\n  {% endif %}\n{% elif slots.name[-1].lower() in \"а, у, ю, я\" %}\n  {% set ending = female_ending %}\n  {% if slots.name[-1].lower() == \"у\" %}\n    {% set name_new = slots.name[:-1]~\"a\" %}\n  {% elif slots.name[-1].lower() == \"ю\" %}\n    {% set name_new = slots.name[:-1]~\"я\" %}\n  {% endif %}\n{% elif slots.name[-1].lower() in \"о, е\" %}\n  {% set ending = neuter_ending %}\n{% elif slots.name[-1].lower() in \"ы, и\"%}\n  {% set ending = plural_ending %}\n{% else %}\n  {% set ending = male_ending %}\n{% endif %}\n{{ (name_new.split()[-1].title() if slots.name[-1].lower() in \"у, ю\" else slots.name.split()[-1].title()) ~ \" выключен\" ~ ending }}\n",
+        "lights_area": "Свет в {{ slots.area }} выключен",
+        "lights_floor": "Свет выключен",
+        "light_all": "Весь свет выключен",
+        "fans_area": "Вентиляторы выключены в {{ slots.area }}",
+        "cover": "{% if slots.name[-1].lower() == \"у\" %}\n  {% set name_new = slots.name[:-1]~\"a\" %}\n{% elif slots.name[-1].lower() == \"ю\" %}\n  {% set name_new = slots.name[:-1]~\"я\" %}\n{% endif %}\n{{ (name_new.split()[-1].title() if slots.name[-1].lower() in \"у, ю\" else slots.name.split()[-1].title()) ~ (\" закрываются\" if slots.name[-1].lower() in \"ы, и\" or slots.name.lower() in \"ворота, окна\" else \" закрывается\") }}\n",
+        "cover_area": "Закрытие в {{ slots.area }} запущено",
+        "cover_device_class": "{% set cover_class = slots.device_class %}\n{% set translations = {\n    \"awning\": \"навесов\",\n    \"навесы\": \"навесов\",\n    \"навес\": \"навеса\",\n    \"blind\": \"жалюзи\",\n    \"curtain\": \"штор\",\n    \"шторы\": \"штор\",\n    \"штору\": \"шторы\",\n    \"шторки\": \"шторок\",\n    \"шторку\": \"шторки\",\n    \"шторка\": \"шторки\",\n    \"занавески\": \"занавесок\",\n    \"занавеску\": \"занавески\",\n    \"door\": \"дверей\",\n    \"двери\": \"дверей\",\n    \"дверь\": \"двери\",\n    \"garage\": \"гаража\",\n    \"gate\": \"ворот\",\n    \"ворота\": \"ворот\",\n    \"shade\": \"рулонных штор\",\n    \"рулонные шторы\": \"рулонных штор\",\n    \"рулонную штору\": \"рулонной шторы\",\n    \"shutter\": \"ставней\",\n    \"ставни\": \"ставней\",\n    \"window\": \"окон\",\n    \"окна\": \"окон\",\n    \"окно\": \"окна\"\n  } %}\n{% if cover_class in translations -%}\n  Закрытие {{ translations[cover_class] }} запущено\n{%- else -%}\n  Закрытие {{ slots.device_class }} запущено\n{%- endif %}\n",
+        "valve": "Закрываю"
+      },
+      "HassClimateSetTemperature": {
+        "default": "Температура установлена на {{ slots.temperature }} {% set temp = slots.temperature | float(default=none) %} {% if temp is not none %}\n  {% set last_digit = temp | abs | int % 10 %}\n  {% set last_two_digits = temp | abs | int % 100 %}\n  {% if last_digit == 1 and last_two_digits != 11 %}\n    градус\n  {% elif last_digit in [2, 3, 4] and (last_two_digits < 10 or last_two_digits > 20) %}\n    градуса\n  {% else %}\n    градусов\n  {% endif %}\n{% endif %}"
+      },
+      "HassStartTimer": {
+        "default": "{% set h = slots.hours if slots.hours is defined else none %} {% set m = slots.minutes if slots.minutes is defined else none %} {% set s = slots.seconds if slots.seconds is defined else none %} {% set h_text = h ~ (' час' if (h | int % 10 == 1 and h | int != 11)\n  else (' часа' if (h | int % 10 in [2, 3, 4] and h | int not in [12, 13, 14])\n  else ' часов')) if h else '' %}\n{% set m_text = m ~ (' минуту' if (m | int % 10 == 1 and m | int != 11)\n  else (' минуты' if (m | int % 10 in [2, 3, 4] and m | int not in [12, 13, 14])\n  else ' минут')) if m else '' %}\n{% set s_text = s ~ (' секунду' if (s | int % 10 == 1 and s | int != 11)\n  else (' секунды' if (s | int % 10 in [2, 3, 4] and s | int not in [12, 13, 14])\n  else ' секунд')) if s else '' %}\n{% set text_list = [ h_text, m_text, s_text] | select() | list %} {% set text = text_list[:-1] | join(' ') ~ ' и ' ~ text_list[-1] if text_list | count > 2 else text_list | join(' и ') %} {% set name = (slots.name | trim) if slots.name is defined else '' %}\n  Таймер {{ name }} на {{ text }} запущен\n",
+        "command": "{% set h = slots.hours if slots.hours is defined else none %} {% set m = slots.minutes if slots.minutes is defined else none %} {% set s = slots.seconds if slots.seconds is defined else none %} {% set h_text = h ~ (' час' if (h | int % 10 == 1 and h | int != 11)\n  else (' часа' if (h | int % 10 in [2, 3, 4] and h | int not in [12, 13, 14])\n  else ' часов')) if h else '' %}\n{% set m_text = m ~ (' минуту' if (m | int % 10 == 1 and m | int != 11)\n  else (' минуты' if (m | int % 10 in [2, 3, 4] and m | int not in [12, 13, 14])\n  else ' минут')) if m else '' %}\n{% set s_text = s ~ (' секунду' if (s | int % 10 == 1 and s | int != 11)\n  else (' секунды' if (s | int % 10 in [2, 3, 4] and s | int not in [12, 13, 14])\n  else ' секунд')) if s else '' %}\n{% set text_list = [ h_text, m_text, s_text] | select() | list %} {% set text = text_list[:-1] | join(' ') ~ ' и ' ~ text_list[-1] if text_list | count > 2 else text_list | join(' и ') %}\n  Команда будет выполнена через {{ text }}\n"
+      },
+      "HassShoppingListAddItem": {
+        "item_added": "Добавляю {{ slots.item }}"
+      },
+      "HassTurnOn": {
+        "default": "{% set female_ending = \"а\" %}\n{% set neuter_ending = \"о\" %}\n{% set male_ending = \"\" %}\n{% set plural_ending = \"ы\" %}\n{% if slots.name[-1].lower() in \"ь\" %}\n  {% if ((slots.name.lower().split() + [\"выключатель\",\"пользователь\",\"день\",\"дождь\"])\n        | count != dict.fromkeys(slots.name.lower().split() + [\"выключатель\",\"пользователь\",\"день\",\"дождь\"]) | count)  or\n        (slots.name[-2].lower() in \"рь\" and slots.name.lower() != \"дверь\") %}\n    {% set ending = male_ending %}\n  {% else %}\n    {% set ending = female_ending %}\n  {% endif %}\n{% elif slots.name[-1].lower() in \"а, у, ю, я\" %}\n  {% set ending = female_ending %}\n  {% if slots.name[-1].lower() == \"у\" %}\n    {% set name_new = slots.name[:-1]~\"a\" %}\n  {% elif slots.name[-1].lower() == \"ю\" %}\n    {% set name_new = slots.name[:-1]~\"я\" %}\n  {% endif %}\n{% elif slots.name[-1].lower() in \"о, е\" %}\n  {% set ending = neuter_ending %}\n{% elif slots.name[-1].lower() in \"ы, и\"%}\n  {% set ending = plural_ending %}\n{% else %}\n  {% set ending = male_ending %}\n{% endif %}\n{{ (name_new.split()[-1].title() if slots.name[-1].lower() in \"у, ю\" else slots.name.split()[-1].title()) ~ \" включен\" ~ ending }}\n",
+        "lights_area": "Свет в {{ slots.area }} включен",
+        "fans_area": "Включены вентиляторы в {{ slots.area }}",
+        "cover": "{% if slots.name[-1].lower() == \"у\" %}\n  {% set name_new = slots.name[:-1]~\"a\" %}\n{% elif slots.name[-1].lower() == \"ю\" %}\n  {% set name_new = slots.name[:-1]~\"я\" %}\n{% endif %}\n{{ (name_new.split()[-1].title() if slots.name[-1].lower() in \"у, ю\" else slots.name.split()[-1].title()) ~ (\" открываются\" if slots.name[-1].lower() in \"ы, и\" or slots.name.lower() in \"ворота, окна\" else  \" открывается\") }}\n",
+        "cover_area": "Открытие в {{ slots.area }} запущено",
+        "cover_device_class": "{% set cover_class = slots.device_class %}\n{% set translations = {\n    \"awning\": \"навесов\",\n    \"навесы\": \"навесов\",\n    \"навес\": \"навеса\",\n    \"blind\": \"жалюзи\",\n    \"curtain\": \"штор\",\n    \"шторы\": \"штор\",\n    \"штору\": \"шторы\",\n    \"шторки\": \"шторок\",\n    \"шторку\": \"шторки\",\n    \"шторка\": \"шторки\",\n    \"занавески\": \"занавесок\",\n    \"занавеску\": \"занавески\",\n    \"door\": \"дверей\",\n    \"двери\": \"дверей\",\n    \"дверь\": \"двери\",\n    \"garage\": \"гаража\",\n    \"gate\": \"ворот\",\n    \"ворота\": \"ворот\",\n    \"shade\": \"рулонных штор\",\n    \"рулонные шторы\": \"рулонных штор\",\n    \"рулонную штору\": \"рулонной шторы\",\n    \"shutter\": \"ставней\",\n    \"ставни\": \"ставней\",\n    \"window\": \"окон\",\n    \"окна\": \"окон\",\n    \"окно\": \"окна\"\n  } %}\n{% if cover_class in translations -%}\n  Открытие {{ translations[cover_class] }} запущено\n{%- else -%}\n  Открытие {{ slots.device_class }} запущено\n{%- endif %}\n",
+        "script": "Выполнено",
+        "scene": "Выполнено",
+        "valve": "Открываю",
+        "lights_floor": "Свет включен"
+      },
+      "HassMediaPause": {
+        "default": "Приостановлено"
+      },
+      "HassClimateSetFanMode": {
+        "default": "Режим изменён"
+      },
+      "HassGetCurrentTime": {
+        "default": "{% set hour_str = '{0:02d}'.format(slots.time.hour) %} {% set minute_str = '{0:02d}'.format(slots.time.minute) %} {{ hour_str }}:{{ minute_str }}\n"
+      },
+      "HassPauseTimer": {
+        "default": "Таймер приостановлен"
+      },
+      "HassNevermind": {
+        "default": ""
+      },
+      "HassTimerStatus": {
+        "default": "{% set num_timers = slots.timers | length %}\n{% set active_timers = slots.timers | selectattr('is_active') | list %}\n{% set num_active_timers = active_timers | length %}\n{% set paused_timers = slots.timers | rejectattr('is_active') | list %}\n{% set num_paused_timers = paused_timers | length %}\n{% set next_timer = None %}\n\n{% if num_timers == 0: %}\n  Таймеры отсутствуют.\n{% elif num_active_timers == 0: %}\n  {# No active timers #}\n  {% if num_paused_timers == 1: %}\n    {% set next_timer = paused_timers[0] %}\n    Таймер приостановлен.\n  {% else: %}\n    {{ num_paused_timers }} приостановленных таймера.\n  {% endif %}\n{% else: %}\n  {# At least one active timer #}\n  {% if num_active_timers == 1: %}\n    {% set next_timer = active_timers[0] %}\n  {% else: %}\n    {# Get active timer that will finish soonest #}\n    {% set sorted_timers = active_timers | sort(attribute='total_seconds_left') %}\n    {% set next_timer = sorted_timers[0] %}\n    {{ num_active_timers }} запущенных таймера.\n  {% endif %}\n\n  {% if num_paused_timers == 1: %}\n    1 приостановленный таймер.\n  {% elif num_paused_timers > 0: %}\n    {{ num_paused_timers }} приостановленных таймера.\n  {% endif %}\n{% endif %}\n\n{% if next_timer: %}\n  {# At least one active timer #}\n  {% if (next_timer.rounded_hours_left == 1) and (next_timer.rounded_minutes_left > 0): %}\n    1 час и {{ next_timer.rounded_minutes_left }} минут\n  {% elif (next_timer.rounded_hours_left == 1): %}\n    1 час\n  {% elif (next_timer.rounded_hours_left > 1) and (next_timer.rounded_minutes_left > 0): %}\n    {{ next_timer.rounded_hours_left }} часов и {{ next_timer.rounded_minutes_left }} минут\n  {% elif (next_timer.rounded_hours_left > 1): %}\n    {{ next_timer.rounded_hours_left }} часов\n  {% elif (next_timer.rounded_minutes_left == 1) and (next_timer.rounded_seconds_left > 0): %}\n    1 минута и {{ next_timer.rounded_seconds_left }} секунд\n  {% elif (next_timer.rounded_minutes_left == 1): %}\n    1 минута\n  {% elif (next_timer.rounded_minutes_left > 1) and (next_timer.rounded_seconds_left > 0): %}\n    {{ next_timer.rounded_minutes_left }} минут и {{ next_timer.rounded_seconds_left }} секунд\n  {% elif (next_timer.rounded_minutes_left > 1): %}\n    {{ next_timer.rounded_minutes_left }} минут\n  {% elif (next_timer.rounded_seconds_left == 1): %}\n    1 секунда\n  {% elif (next_timer.rounded_seconds_left > 1): %}\n    {{ next_timer.rounded_seconds_left }} секунд\n  {% endif %}\n\n  {% if num_timers > 1: %}\n    {# Give some extra information to disambiguate #}\n    осталось на таймере\n    {% if (next_timer.start_hours > 0) and (next_timer.start_minutes > 0): %}\n      {{ next_timer.start_hours }} час и {{ next_timer.start_minutes }} минут\n    {% elif (next_timer.start_hours > 0): %}\n      {{ next_timer.start_hours }} час\n    {% elif (next_timer.start_minutes > 0) and (next_timer.start_seconds > 0): %}\n      {{ next_timer.start_minutes }} минут и {{ next_timer.start_seconds }} секунд\n    {% elif (next_timer.start_minutes > 0): %}\n      {{ next_timer.start_minutes }} минут\n    {% elif (next_timer.start_seconds > 0): %}\n      {{ next_timer.start_seconds }} секунд\n    {% endif %}\n\n    {% if next_timer.name: %}\n      {{ next_timer.name }}\n    {% elif next_timer.area: %}\n      {{ next_timer.area }}\n    {% endif %}\n  {% else: %}\n    осталось.\n  {% endif %}\n{% endif %}\n"
+      },
+      "HassListAddItem": {
+        "item_added": "Добавил {{ slots.item }}"
+      },
+      "HassMediaPlayerUnmute": {
+        "default": "Звук включён"
+      },
+      "HassGetCurrentDate": {
+        "default": "{% set months = {\n   1: 'января',\n   2: 'февраля',\n   3: 'марта',\n   4: 'апреля',\n   5: 'мая',\n   6: 'июня',\n   7: 'июля',\n   8: 'августа',\n   9: 'сентября',\n   10: 'октября',\n   11: 'ноября',\n   12: 'декабря',\n} %} {% set ordinal = {\n   1: 'Первое',\n   2: 'Второе',\n   3: 'Третье',\n   4: 'Четвертое',\n   5: 'Пятое',\n   6: 'Шестое',\n   7: 'Седьмое',\n   8: 'Восьмое',\n   9: 'Девятое',\n   10: 'Десятое',\n   11: 'Одиннадцатое',\n   12: 'Двенадцатое',\n   13: 'Тринадцатое',\n   14: 'Четырнадцатое',\n   15: 'Пятнадцатое',\n   16: 'Шестнадцатое',\n   17: 'Семнадцатое',\n   18: 'Восемнадцатое',\n   19: 'Девятнадцатое',\n   20: 'Двадцатое',\n   21: 'Двадцать первое',\n   22: 'Двадцать второе',\n   23: 'Двадцать третье',\n   24: 'Двадцать четвертое',\n   25: 'Двадцать пятое',\n   26: 'Двадцать шестое',\n   27: 'Двадцать седьмое',\n   28: 'Двадцать восьмое',\n   29: 'Двадцать девятое',\n   30: 'Тридцатое',\n   31: 'Тридцать первое',\n } %}\n{% set weekday = [ 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье' ] %}\n{{ ordinal[slots.date.day] }} {{ months[slots.date.month] }}, {{ weekday[slots.date.weekday()] }}\n"
+      },
+      "HassUnpauseTimer": {
+        "default": "Таймер продолжен"
+      },
+      "HassMediaPrevious": {
+        "default": "Переключено"
+      },
+      "HassVacuumCleanArea": {
+        "prepositional": "Запущена уборка в {{ slots.area }}",
+        "accusative": "Убираю {{ slots.area }}",
+        "here": "Запущена уборка зоны: {{ slots.area }}"
+      },
+      "HassLawnMowerStartMowing": {
+        "default": "Стрижка начата"
+      },
+      "HassGetWeather": {
+        "default": "{% set weather_condition = {\n  'clear': ', ясно',\n  'clear-night': ', ясная ночь',\n  'cloudy': ', облачно',\n  'exceptional': ', экстремальные погодные явления',\n  'fog': ', туман',\n  'hail': ', град',\n  'lightning': ', гроза',\n  'lightning-rainy': ', дождь с грозой',\n  'partlycloudy': ', частичная облачность',\n  'pouring': ', ливень',\n  'rainy': ', дождь',\n  'snowy': ', снег',\n  'snowy-rainy': ', мокрый снег',\n  'sunny': ', солнечно',\n  'windy': ', ветренно',\n  'windy-variant': ', ветренно и облачно'\n} %}\n\n  {% set temperature = state.attributes.get('temperature') | float %}\n  {% if temperature.is_integer() %}\n      {% if temperature == 0 %}\n        {% set temperature_string = 0 | string %}\n      {% elif temperature < 0 %}\n        {% set temperature_string = 'минус ' ~ (temperature | abs | int ) | string %}\n      {% else %}\n        {% set temperature_string = 'плюс ' ~ (temperature | int) | string %}\n      {% endif %}\n  {% else %}\n      {% if temperature < 0 %}\n        {% set temperature_string = 'минус ' ~ (temperature | abs) | string | replace('.', ',') %}\n      {% else %}\n        {% set temperature_string = 'плюс ' ~ temperature | string | replace('.', ',') %}\n      {% endif %}\n  {% endif %}\n\n{{ \"Сейчас \" ~ temperature_string}}{{ weather_condition.get((state.state | string).lower(), state.state | string) }}\n"
+      },
+      "HassLightSet": {
+        "brightness": "Яркость установлена",
+        "color": "Цвет установлен",
+        "temperature": "Цветовая температура установлена"
+      },
+      "HassCancelAllTimers": {
+        "default": "{% if slots.canceled < 1: %} Нет установленных таймеров. {% elif slots.canceled == 1: %} Выключен 1 таймер. {% elif 5 > slots.canceled > 1: %} Выключено {{ slots.canceled }} таймера. {% else: %} Выключено {{ slots.canceled }} таймеров. {% endif %}\n",
+        "area": "{% if slots.canceled < 1: %} Нет установленных таймеров в {{ slots.area }}. {% elif slots.canceled == 1: %} Выключен 1 таймер в {{ slots.area }}. {% elif 5 > slots.canceled > 1: %} Выключено {{ slots.canceled }} таймера в {{ slots.area }}. {% else: %} Выключено {{ slots.canceled }} таймеров в {{ slots.area }}. {% endif %}\n"
+      },
+      "HassLawnMowerDock": {
+        "default": "Возвращаюсь на базу"
+      },
+      "HassBroadcast": {
+        "default": "Выполняю"
+      },
+      "HassVacuumStart": {
+        "default": "Уборка начата",
+        "by_name": "{{ slots.name }} запущен"
+      },
+      "HassMediaUnpause": {
+        "default": "Возобновлено"
+      },
+      "HassShoppingListCompleteItem": {
+        "item_completed": "Отметил {{ slots.item }}"
+      },
+      "HassSetPosition": {
+        "default": "Положение задано",
+        "cover_device_class": "Положение задано: {{ slots.device_class }}"
+      },
+      "HassMediaNext": {
+        "default": "Переключено"
+      },
+      "HassSetVolumeRelative": {
+        "default": "Громкость изменена"
+      },
+      "HassCancelTimer": {
+        "default": "Таймер выключен"
+      },
+      "HassMediaSearchAndPlay": {
+        "default": "{% if slots.media: %}\nВоспроизвожу\n{% else: %}\nНичего не найдено\n{% endif %}\n"
+      },
+      "HassClimateGetTemperature": {
+        "default": "{% set current_temperature = state_attr(state.entity_id, 'current_temperature') %} {% set temperature = state.state if current_temperature is none else current_temperature %} {{ temperature }} {% set temp = temperature | float %} {% set last_digit = temp|abs|int % 10 %} {% set last_two_digits = temp|abs|int % 100 %} {% if last_digit == 1 and last_two_digits != 11 %}\n  градус\n{% elif last_digit in [2, 3, 4] and (last_two_digits < 10 or last_two_digits > 20) %}\n  градуса\n{% else %}\n  градусов\n{% endif %}"
+      },
+      "HassSetVolume": {
+        "default": "Громкость задана"
+      },
+      "HassFanSetSpeed": {
+        "default": "Скорость установлена"
+      },
+      "HassListCompleteItem": {
+        "item_completed": "Отметил {{ slots.item }}"
+      },
+      "HassDecreaseTimer": {
+        "default": "{% set h = slots.hours if slots.hours is defined else none %} {% set m = slots.minutes if slots.minutes is defined else none %} {% set s = slots.seconds if slots.seconds is defined else none %} {% set h_text = h ~ (' час' if (h | int % 10 == 1 and h | int != 11)\n  else (' часа' if (h | int % 10 in [2, 3, 4] and h | int not in [12, 13, 14])\n  else ' часов')) if h else '' %}\n{% set m_text = m ~ (' минуту' if (m | int % 10 == 1 and m | int != 11)\n  else (' минуты' if (m | int % 10 in [2, 3, 4] and m | int not in [12, 13, 14])\n  else ' минут')) if m else '' %}\n{% set s_text = s ~ (' секунду' if (s | int % 10 == 1 and s | int != 11)\n  else (' секунды' if (s | int % 10 in [2, 3, 4] and s | int not in [12, 13, 14])\n  else ' секунд')) if s else '' %}\n{% set text_list = [ h_text, m_text, s_text] | select() | list %} {% set text = text_list[:-1] | join(' ') ~ ' и ' ~ text_list[-1] if text_list | count > 2 else text_list | join(' и ') %} {% set name = (slots.name | trim) if slots.name is defined else '' %}\n  Таймер {{ name }} уменьшен на {{ text }}\n"
+      },
+      "HassIncreaseTimer": {
+        "default": "{% set h = slots.hours if slots.hours is defined else none %} {% set m = slots.minutes if slots.minutes is defined else none %} {% set s = slots.seconds if slots.seconds is defined else none %} {% set h_text = h ~ (' час' if (h | int % 10 == 1 and h | int != 11)\n  else (' часа' if (h | int % 10 in [2, 3, 4] and h | int not in [12, 13, 14])\n  else ' часов')) if h else '' %}\n{% set m_text = m ~ (' минуту' if (m | int % 10 == 1 and m | int != 11)\n  else (' минуты' if (m | int % 10 in [2, 3, 4] and m | int not in [12, 13, 14])\n  else ' минут')) if m else '' %}\n{% set s_text = s ~ (' секунду' if (s | int % 10 == 1 and s | int != 11)\n  else (' секунды' if (s | int % 10 in [2, 3, 4] and s | int not in [12, 13, 14])\n  else ' секунд')) if s else '' %}\n{% set text_list = [ h_text, m_text, s_text] | select() | list %} {% set text = text_list[:-1] | join(' ') ~ ' и ' ~ text_list[-1] if text_list | count > 2 else text_list | join(' и ') %} {% set name = (slots.name | trim) if slots.name is defined else '' %}\n  Таймер {{ name }} увеличен на {{ text }}\n"
+      },
+      "HassMediaPlayerMute": {
+        "default": "Звук выключен"
+      },
+      "HassVacuumReturnToBase": {
+        "default": "Возвращаюсь на станцию"
+      },
+      "HassListRemoveItem": {
+        "item_deleted": "Удалил {{ slots.item }}"
+      },
+      "HassRespond": {
+        "default": "",
+        "hello": "Привет от Home Assistant.",
+        "listening": "Нет, я записываю только после того, как вы произнесёте фразу активации.",
+        "data": "Ваши данные отправляются на ваш сервер Home Assistant.",
+        "commands": "Чтобы узнать, о чём меня можно спросить, откройте страницу home assistant точка ай оу слэш войс.",
+        "creator": "Меня создало замечательное сообщество Home Assistant, энтузиасты со всего мира."
+      }
+    }
+  }
+}

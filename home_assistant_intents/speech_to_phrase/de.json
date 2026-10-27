@@ -58,6 +58,25 @@
         }
       ]
     },
+    "HassClimateSetFanMode": {
+      "data": [
+        {
+          "sentences": [
+            "stelle [den ]Lüftermodus auf {fan_mode}",
+            "[den ]Lüftermodus auf {fan_mode} stellen"
+          ],
+          "metadata": {
+            "slot_combination": "fan_mode_only"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
+          },
+          "response": "default"
+        }
+      ]
+    },
     "HassDecreaseTimer": {
       "data": [
         {
@@ -989,6 +1008,50 @@
         }
       ]
     },
+    "fan_mode": {
+      "values": [
+        {
+          "in": "auto[mati(sch|k)]",
+          "out": "auto"
+        },
+        {
+          "in": "(an|ein)",
+          "out": "on"
+        },
+        {
+          "in": "aus",
+          "out": "off"
+        },
+        {
+          "in": "gering",
+          "out": "low"
+        },
+        {
+          "in": "mittel",
+          "out": "medium"
+        },
+        {
+          "in": "hoch",
+          "out": "high"
+        },
+        {
+          "in": "oben",
+          "out": "top"
+        },
+        {
+          "in": "mittig",
+          "out": "middle"
+        },
+        {
+          "in": "fokus[siert]",
+          "out": "focus"
+        },
+        {
+          "in": "diffus",
+          "out": "diffuse"
+        }
+      ]
+    },
     "cover_classes": {
       "values": [
         {
@@ -1536,10 +1599,14 @@
         "lock": "abgeschlossen",
         "scene": "{{ slots.name }} aktiviert",
         "script": "{{ slots.name }} gestartet",
-        "valve": "geöffnet"
+        "valve": "geöffnet",
+        "button": "{{ slots.name }} gedrückt"
       },
       "HassMediaPause": {
         "default": "Pausiert"
+      },
+      "HassClimateSetFanMode": {
+        "default": "{% set translations = {\n  \"auto\": \"automatisch\",\n  \"on\": \"an\",\n  \"off\": \"aus\",\n  \"low\": \"gering\",\n  \"medium\": \"mittel\",\n  \"high\": \"hoch\",\n  \"top\": \"oben\",\n  \"middle\": \"mittig\",\n  \"focus\": \"fokussiert\",\n  \"diffuse\": \"diffus\"\n} %} Lüftermodus auf {{ translations.get(slots.fan_mode, slots.fan_mode) }} eingestellt"
       },
       "HassGetCurrentTime": {
         "default": "{% set hour_str = '{0:02d}'.format(slots.time.hour) %} {% set minute_str = '{0:02d}'.format(slots.time.minute) %} Es ist {{ hour_str }}:{{ minute_str }}\n"
