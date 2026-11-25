@@ -41,6 +41,15 @@
         },
         {
           "sentences": [
+            "wat is de temperatuur (in|op) [de|het] {floor}"
+          ],
+          "metadata": {
+            "slot_combination": "floor_only"
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
             "Wat is de temperatuur van [de|het] {name}"
           ],
           "metadata": {
@@ -50,6 +59,24 @@
             "domain": [
               "climate"
             ]
+          },
+          "response": "default"
+        }
+      ]
+    },
+    "HassClimateSetFanMode": {
+      "data": [
+        {
+          "sentences": [
+            "zet de ventilatormodus op {fan_mode}"
+          ],
+          "metadata": {
+            "slot_combination": "fan_mode_only"
+          },
+          "requires_context": {
+            "area": {
+              "slot": true
+            }
           },
           "response": "default"
         }
@@ -449,6 +476,34 @@
       "data": [
         {
           "sentences": [
+            "zet [de|het] {name} in [de|het] {area} op {position} procent"
+          ],
+          "metadata": {
+            "slot_combination": "name_area"
+          },
+          "requires_context": {
+            "domain": [
+              "cover"
+            ]
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
+            "zet [de|het] {name} (in|op) [de|het] {floor} op {position} procent"
+          ],
+          "metadata": {
+            "slot_combination": "name_floor"
+          },
+          "requires_context": {
+            "domain": [
+              "cover"
+            ]
+          },
+          "response": "default"
+        },
+        {
+          "sentences": [
             "zet de positie van [de|het] {name} op {position} procent"
           ],
           "metadata": {
@@ -601,6 +656,30 @@
             }
           },
           "response": "lights_area"
+        },
+        {
+          "sentences": [
+            "doe de lichten uit [in|op] [de|het] {floor}"
+          ],
+          "metadata": {
+            "slot_combination": "floor_domain"
+          },
+          "slots": {
+            "domain": "light"
+          },
+          "response": "lights_floor"
+        },
+        {
+          "sentences": [
+            "doe de ventilator uit [in|op] [de|het] {floor}"
+          ],
+          "metadata": {
+            "slot_combination": "floor_domain"
+          },
+          "slots": {
+            "domain": "fan"
+          },
+          "response": "fans_floor"
         },
         {
           "sentences": [
@@ -919,6 +998,50 @@
         }
       ]
     },
+    "fan_mode": {
+      "values": [
+        {
+          "in": "auto[matisch]",
+          "out": "auto"
+        },
+        {
+          "in": "aan",
+          "out": "on"
+        },
+        {
+          "in": "uit",
+          "out": "off"
+        },
+        {
+          "in": "laag",
+          "out": "low"
+        },
+        {
+          "in": "(gemiddeld|medium)",
+          "out": "medium"
+        },
+        {
+          "in": "hoog",
+          "out": "high"
+        },
+        {
+          "in": "boven",
+          "out": "top"
+        },
+        {
+          "in": "midden",
+          "out": "middle"
+        },
+        {
+          "in": "focus",
+          "out": "focus"
+        },
+        {
+          "in": "diffuus",
+          "out": "diffuse"
+        }
+      ]
+    },
     "cover_classes": {
       "values": [
         {
@@ -1164,6 +1287,10 @@
     "degrees": "([ ]°| graad| graden)",
     "temp": "(temperatuur|verwarming)",
     "warm": "(warm|heet|koud|koel)",
+    "fan_mode_name": "(ventilator|fan)[ ](modus|stand)",
+    "thermostat": "de (verwarming|thermostaat|airco[nditioning])",
+    "target_temp": "(ingestelde temperatuur|doeltemperatuur)",
+    "at_what_temp": "op (<how_many> graden|welke temperatuur)",
     "of": "(van|bij|voor|op)",
     "here": "(hier|in de[ze] (kamer|ruimte))",
     "change": "(zet|mag|mogen|doe|verander|maak|schakel)",
@@ -1277,6 +1404,8 @@
         "default": "Uitgezet",
         "lights_area": "Verlichting uitgezet",
         "fans_area": "Ventilatoren uitgezet",
+        "lights_floor": "Verlichting uitgezet",
+        "fans_floor": "Ventilatoren uitgezet",
         "cover": "Gesloten",
         "light_all": "Alle lampen uitgezet",
         "fan_all": "Alle ventilatoren uitgezet",
@@ -1307,10 +1436,14 @@
         "lock": "Vergrendeld",
         "lock_area": "Sloten vergrendeld",
         "valve": "Geopend",
-        "cover_device_class": "{{ slots.device_class }} geopend"
+        "cover_device_class": "{{ slots.device_class }} geopend",
+        "button": "Ingedrukt"
       },
       "HassMediaPause": {
         "default": "Gepauzeerd"
+      },
+      "HassClimateSetFanMode": {
+        "default": "{% set translations = {\n  \"auto\": \"automatisch\",\n  \"on\": \"aan\",\n  \"off\": \"uit\",\n  \"low\": \"laag\",\n  \"medium\": \"gemiddeld\",\n  \"high\": \"hoog\",\n  \"top\": \"boven\",\n  \"middle\": \"midden\",\n  \"focus\": \"focus\",\n  \"diffuse\": \"diffuus\"\n} %} Ventilatormodus ingesteld op {{ translations.get(slots.fan_mode, slots.fan_mode) }}"
       },
       "HassGetCurrentTime": {
         "default": "{% set minute_str = '{0:02d}'.format(slots.time.minute) %} Het is {{ slots.time.hour }}:{{ minute_str }}\n"
@@ -1387,7 +1520,8 @@
         "default": "{% if slots.media: %}\nMedia wordt afgespeeld\n{% else: %}\nMedia niet gevonden\n{% endif %}\n"
       },
       "HassClimateGetTemperature": {
-        "default": "{% set current_temperature = state_attr(state.entity_id, 'current_temperature') %} {% set temperature = state.state if current_temperature is none else current_temperature %} {% if temperature == 1: %}\n  {{ temperature }} graad\n{% else: %}\n  {{ temperature }} graden\n{% endif %}\n"
+        "default": "{% set current_temperature = state_attr(state.entity_id, 'current_temperature') %} {% set temperature = state.state if current_temperature is none else current_temperature %} {% if temperature == 1: %}\n  {{ temperature }} graad\n{% else: %}\n  {{ temperature }} graden\n{% endif %}\n",
+        "target_temperature": "{% set temperature = state_attr(state.entity_id, 'temperature') %} {% if temperature is none: %}\n  Er is geen temperatuur ingesteld\n{% elif temperature == 1: %}\n  {{ temperature }} graad\n{% else: %}\n  {{ temperature }} graden\n{% endif %}\n"
       },
       "HassSetVolume": {
         "default": "Volume aangepast"

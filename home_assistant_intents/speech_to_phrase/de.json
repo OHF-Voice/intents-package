@@ -1686,8 +1686,8 @@
         "default": "{% if slots.media: %}\nWiedergabe wird gestartet\n{% else: %}\nKeine passenden Inhalte gefunden\n{% endif %}\n"
       },
       "HassClimateGetTemperature": {
-        "current_temperature": "{% set current_temperature = state_attr(state.entity_id, 'current_temperature') %} {% set temperature = state.state if current_temperature is none else current_temperature %} {% if temperature not in ['unavailable', 'unknown'] %}\n  {{ temperature | float | round(1) | replace(\".\",\",\") | replace(\",0\",\"\") }} Grad\n{% else %}\n  Der Temperatursensor ist nicht verfügbar.\n{% endif %}\n",
-        "target_temperature": "{% set target_temperature = state_attr(state.entity_id, 'temperature') %}\n{% set temperature = state.state if target_temperature is none else target_temperature %}\n{% if temperature not in ['unavailable', 'unknown'] %}\n  {{ temperature | float | round(1) | replace(\".\",\",\") | replace(\",0\",\"\") }} Grad\n{% else %}\n  Thermostat ist nicht verfügbar.\n{% endif %}\n"
+        "current_temperature": "{% set current_temperature = state_attr(state.entity_id, 'current_temperature') %} {% set temperature = (state.state if current_temperature is none else current_temperature) | float(none) %} {% if temperature is not none %}\n  {{ temperature | round(1) | replace(\".\",\",\") | replace(\",0\",\"\") }} Grad\n{% else %}\n  Der Temperatursensor ist nicht verfügbar.\n{% endif %}\n",
+        "target_temperature": "{% set target_temperature = state_attr(state.entity_id, 'temperature') %}\n{% set temperature = (state.state if target_temperature is none else target_temperature) | float(none) %}\n{% if temperature is not none %}\n  {{ temperature | round(1) | replace(\".\",\",\") | replace(\",0\",\"\") }} Grad\n{% else %}\n  Thermostat ist nicht verfügbar.\n{% endif %}\n"
       },
       "HassSetVolume": {
         "default": "Lautstärke festgelegt"
